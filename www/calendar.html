@@ -6,11 +6,15 @@
 	<link rel="stylesheet" href="js/theme.min.css" />
 	<link rel="stylesheet" href="js/jquery.mobile.icons.min.css" />
     <link rel="stylesheet" href="css/splash.css" />
+	<link rel="stylesheet" href="css/fullcalendar.css"/>
 	<script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>
 	<script type="text/javascript" src="js/chromeLoading.js"></script>
 	<script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
 	<script type="text/javascript" src="js/calendar.js"></script>
 	<script type="text/javascript" src="js/globalFunctions.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/moment.min.js"></script>
+	<script type="text/javascript" src="js/fullcalendar.js"></script>
 	
 	<!--for the date picker
 	<link rel="stylesheet" href="js/jquery-ui.css" />
@@ -19,11 +23,11 @@
 	  $(function() {
 		$( "#datepicker" ).datepicker();
 	  });
-	 </script>-->
+	 </script>
 	
 	<title>PARC Pocket Job Coach</title>
 	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">-->
 </head>
 <body>
 	<div data-role="header" data-position="fixed">
@@ -39,7 +43,17 @@
 		</div>
 	</div>
 
-	<div data-role="main" class="ui-content">
+	<script>
+        jQuery(document).ready(function () {
+
+            $('#calendar').fullCalendar({
+                //any options we want here
+				height: "auto",
+				handleWindowResize: true
+			})
+        });
+	</script>
+	<!--<div data-role="main" class="ui-content">
 		<h1>Calendar</h1>
 		<label for="date">Please Select a Date</label>
 		<input type="date" name="date" id="date" value=""/>
@@ -60,8 +74,10 @@
 					<p>notes or additional details</p>
 				</a>
 			</li>
-		</ul>-->
-	</div>
+		</ul>
+	</div>-->
+
+	<div id="calendar"></div>
 	
 	<div data-role="footer" data-position="fixed">
 		<div data-role="navbar">
