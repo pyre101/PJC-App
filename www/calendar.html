@@ -30,6 +30,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">-->
 </head>
 <body>
+
 	<div data-role="header" data-position="fixed">
 		<a href="tools.html" data-ajax="false" class="ui-btn ui-icon-carat-l ui-btn-icon-left">Back</a>
 		<h1 class="app-name">PARC Pocket Job Coach</h1>
@@ -42,17 +43,9 @@
 			</ul>
 		</div>
 	</div>
+	<div data-role="page" id="cal">
 
-	<script>
-		$(document).on('pageshow','#index',function(e,data){
-
-            $('#calendar').fullCalendar({
-                //any options we want here
-				height: "auto",
-				handleWindowResize: true
-			})
-        });
-	</script>
+	
 	<!--<div data-role="main" class="ui-content">
 		<h1>Calendar</h1>
 		<label for="date">Please Select a Date</label>
@@ -76,9 +69,11 @@
 			</li>
 		</ul>
 	</div>-->
+		<div data-role="content">
+			<div id="calendar"></div>
+		</div>
 
-	<div id="calendar"></div>
-	
+	</div>
 	<div data-role="footer" data-position="fixed">
 		<div data-role="navbar">
 			<ul>
@@ -88,5 +83,6 @@
 			</ul>
 		</div>
 	</div>
+
 </body>
 </html>
