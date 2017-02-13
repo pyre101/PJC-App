@@ -22,7 +22,7 @@ jQuery(document).ready(function () {
     
     
     function keepAlive(tempToken) {
-        var keepAliveUri = 'http://pjcdbrebuild.gear.host/api/Login';
+        var keepAliveUri = 'http://pjcdbrebuild2.gear.host/api/Login';
         var token = tempToken;
         $.getJSON(keepAliveUri,
             {token: token},
