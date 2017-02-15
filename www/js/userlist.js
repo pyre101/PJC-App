@@ -18,7 +18,7 @@ jQuery(document).ready(function() {
                 "<h4>" + item.userName + "</h4>" +
                 "<ul data-role='listview'>" +
                     // TODO: Have the jobs/contact button link correctly
-                    "<li><a href='#'>Jobs</a></li>" +
+                    "<li><a href='joblist.html'>Jobs</a></li>" +
                     "<li><a href='#'>Contact</a></li>" +
                 "</ul>" +
             "</div>").appendTo($("userList"));
