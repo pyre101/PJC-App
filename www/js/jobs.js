@@ -9,6 +9,7 @@ jQuery(document).ready(function() {
     displayAllRoutinesFromStorage();
             
     function displayAllRoutinesFromStorage() {
+        console.log(localStorage.getItem('routineList'));
         var routineList = JSON.parse(localStorage.getItem('routineList'));
 
         $.each(routineList, function (key, item) {

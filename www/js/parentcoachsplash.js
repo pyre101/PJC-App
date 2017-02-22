@@ -9,7 +9,7 @@ jQuery(document).ready(function () {
     document.getElementById("userName").value = localStorage.getItem('name');
 
     var loginToken = window.localStorage.getItem("token");
-    var uri = 'http://pjcdbrebuild.gear.host/api/';
+    var uri = 'http://pjcdbrebuild2.gear.host/api/';
 
 
     $.getJSON(uri + "Routine",

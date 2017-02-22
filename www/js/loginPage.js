@@ -21,7 +21,6 @@ function submitLogin() {
                  var token = data;
                  var num = token.search(",");
                  var role = token.substr(num + 1);
-                 console.log(role);
                  if(role == "Job Coach" || role == "Parent" || role == "Administrator"){
                      window.location.href = 'ParentCoachSplash.html';
                  }
@@ -42,15 +41,11 @@ function submitLogin() {
    });
 }
 
-function token(){
-
-}
-
 jQuery(document).ready(function() {
    if (window.localStorage.getItem("token") !== null) {
        var token = window.localStorage.getItem("token").toString();
        var num = token.search(",");
-       var role = token.substr(num);
+       var role = token.substr(num+1);
        console.log(role);
        if(role == "Job Coach" || role == "Parent" || role == "Administrator"){
            window.location.href = 'ParentCoachSplash.html';

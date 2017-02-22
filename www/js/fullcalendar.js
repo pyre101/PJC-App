@@ -16,7 +16,6 @@
 	}
 })(function($, moment) {
 
-;;
 
 var FC = $.fullCalendar = {
 	version: "3.1.0",
