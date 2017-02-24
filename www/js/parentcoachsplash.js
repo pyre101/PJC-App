@@ -11,8 +11,16 @@ jQuery(document).ready(function () {
     var loginToken = window.localStorage.getItem("token");
     var uri = 'http://pjcdbrebuild2.gear.host/api/';
 
+    $.getJSON(uri + "JobCoach",
+        {token: loginToken},
+        function (data) {
+            localStorage.setItem("userList", JSON.stringify(data));
+        }).error(function () {
+        console.log("USER LIST IS NOT SET");
+    });
 
-    $.getJSON(uri + "Routine",
+    //None of this is necessary:
+    /*$.getJSON(uri + "Routine",
         {token: loginToken},
         function (data) {
             localStorage.setItem('routineList', JSON.stringify(data));
@@ -45,7 +53,7 @@ jQuery(document).ready(function () {
         }
     ).error(function() {
         console.log("JOB LIST IS NOT SET");
-    });
+    });*/
 
 
     function keepAlive(tempToken) {
