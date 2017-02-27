@@ -16,15 +16,27 @@ jQuery(document).ready(function() {
             console.log(item.userName);
             $("<div data-role='collapsible'>" +
                 "<h4>" + item.userName + "</h4>" +
-                "<ul data-role='listview'>" +
-                    // TODO: Have the jobs/contact button link correctly
-                    "<li><a href='joblist.html'>Jobs</a></li>" +
+                "<ul data-role='listview' data-inset='true'>" +
+                    "<li><a href='#' onclick='"+getRoutineList(item.userName)+"'>Jobs</a></li>" +
                     "<li><a href='#'>Contact</a></li>" +
                 "</ul>" +
             "</div>").appendTo($("#userList"));
 
             $('#userList').collapsibleset('refresh');
         });
+    }
 
+    function getRoutineList(username) {
+        $.getJSON("http://pjcrebuild2.gear.host/api/Routine",
+            {
+                token: loginToken,
+                username: username
+            },
+            function (data) {
+                localStorage.setItem('jobList', JSON.stringify(data));
+            }
+        ).error(function () {
+            console.log("ROUTINE LIST IS NOT SET");
+        });
     }
 });
