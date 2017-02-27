@@ -14,14 +14,14 @@ jQuery(document).ready(function() {
         // Loop through list of users and create an accordion menu for each user
         $.each(userList, function (key, item) {
             console.log(item.userName);
-            $("<div data-role='collabsible'>" +
+            $("<div data-role='collapsible'>" +
                 "<h4>" + item.userName + "</h4>" +
                 "<ul data-role='listview'>" +
                     // TODO: Have the jobs/contact button link correctly
                     "<li><a href='joblist.html'>Jobs</a></li>" +
                     "<li><a href='#'>Contact</a></li>" +
                 "</ul>" +
-            "</div>").appendTo($("userList"));
+            "</div>").appendTo($("#userList"));
 
             $('#userList').collapsibleset('refresh');
         });
