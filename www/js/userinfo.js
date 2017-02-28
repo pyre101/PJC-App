@@ -5,7 +5,7 @@ function getUserInfo($username) {
             keepAliveTwo(loginToken);
         }, 500);
 
-        var uri = 'http://localhost:43393/api/';
+        var uri = 'http://pjcdbrebuild2.gear.host/api/';
         $.getJSON(uri + "JobCoach",
             {token: loginToken, username: $username},
             function (data) {
