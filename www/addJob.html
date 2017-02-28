@@ -34,25 +34,20 @@
 
 <div data-role="main" class="ui-content">
     <h1>ADD JOB</h1>
+	
+	
+	
 	<form>
 		<div width="100%">Title: <input type="text" name="title"></input></div><br>
 		<div width="100%">Timed: <input type="checkbox" name="isTimed"></input></div><br> 
 		<div width="100%">Expected Duration: <input type="text" name="expectedDuration"></input></div><br>
 		<div width="100%">Email on Job Completion: <input type="checkbox" name="wantEmail"></input></div><br> 
-	</form>
-	
-	<h1>Tasks</h1>
-	
-	<form>
+		<h1>Tasks</h1>
 		<ul id="listOfTasks">
-			<li>
-				Task Name: <input type="text" name="taskName" width="80%"></input>
-				<div width="20%">Description: </div><input type="text" name="description" width="80%"></input>
-				Expected Duration:<input type="text" name="expectedDurationTask1" style="width:80%;">
-				
-			</li>
+			
 		</ul>
 		<div width="100%"><button type="button" onclick="addJob()">Add Task </button> </div>
+		<input type="submit" value="Create Job" > 
 	</form>
 	 
 </div>
