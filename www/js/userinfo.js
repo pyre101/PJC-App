@@ -1,19 +1,19 @@
-jQuery(document).ready(function () {
-    var loginToken = window.localStorage.getItem("token");
+function getUserInfo($username) {
+        var loginToken = window.localStorage.getItem("token");
 
-    setTimeout(function() {
-        keepAliveTwo(loginToken);
-    }, 500);
+        setTimeout(function() {
+            keepAliveTwo(loginToken);
+        }, 500);
 
-    //TODO: finish function to get info for the selected user, create user object
-
-    function putInfo($user) {
-        window.location.href = "../userinfo.html";
-        $.getElementById("name").innerHTML = $user.name.toString();
-        $.getElementById("phone").innerHTML = $user.phone.toString();
-        $.getElementById("address").innerHTML = $user.address.toString();
-        $.getElementById("city").innerHTML = $user.city.toString();
-        $.getElementById("state").innerHTML = $user.state.toString();
-        $.getElementById("zip").innerHTML = $user.zip.toString();
-    }
-});
+        var uri = 'http://localhost:43393/api/';
+        $.getJSON(uri + "JobCoach",
+            {token: loginToken, username: $username},
+            function (data) {
+                window.localStorage.setItem("UserInfo", JSON.stringify(data));
+            }
+        ).error(function () {
+            console.log("Something went wrong getting the data");
+        }).success(function () {
+            location.href="userinfo.html";
+        });
+}
