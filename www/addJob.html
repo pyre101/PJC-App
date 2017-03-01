@@ -6,11 +6,13 @@
     <link rel="stylesheet" href="js/theme.min.css" />
     <link rel="stylesheet" href="js/jquery.mobile.icons.min.css" />
     <link rel="stylesheet" href="css/splash.css" />
+	<link rel="stylesheet" href="css/addJob.css" /> 
     <script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>
     <script type="text/javascript" src="js/chromeLoading.js"></script>
     <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
     <script type="text/javascript" src="js/globalFunctions.js"></script>
     <script type="text/javascript" src="js/addJob.js"></script>
+	
 
 
     <meta charset="utf-8" />
@@ -32,20 +34,22 @@
 
 <div data-role="main" class="ui-content">
     <h1>ADD JOB</h1>
+	
+	
+	
 	<form>
 		<div width="100%">Title: <input type="text" name="title"></input></div><br>
 		<div width="100%">Timed: <input type="checkbox" name="isTimed"></input></div><br> 
 		<div width="100%">Expected Duration: <input type="text" name="expectedDuration"></input></div><br>
 		<div width="100%">Email on Job Completion: <input type="checkbox" name="wantEmail"></input></div><br> 
+		<h1>Tasks</h1>
+		<ul id="listOfTasks">
+			
+		</ul>
+		<div width="100%"><button type="button" onclick="addJob()">Add Task </button> </div>
+		<input type="submit" value="Create Job" > 
 	</form>
-	
-	<h1>Tasks</h1>
-	<form>
-		<div width="100%">Task Name: <input type="text" name="taskName"></input></div>
-		<div width="100%">Description: <input type="text" name="description"></input></div>
-		Expected Duration:<input type="checkbox" name="expectedDurationTask1">
-		<div width="100%"><button type="button" onclick="alert('add Task')">Add Task </button> </div>
-	</form>
+	 
 </div>
 
 <div data-role="footer" data-position="fixed">

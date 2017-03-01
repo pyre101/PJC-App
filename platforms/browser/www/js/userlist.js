@@ -19,7 +19,7 @@ jQuery(document).ready(function() {
                 "<ul data-role='listview'>" +
                     // TODO: Have the jobs/contact button link correctly
                     "<li><a href='joblist.html'>Jobs</a></li>" +
-                    "<li><a href='#'>Contact</a></li>" +
+                    "<li onclick='getUserInfo(\""+item.userName+"\")'><a href='#'>Contact</a></li>" +
                 "</ul>" +
             "</div>").appendTo($("#userList"));
 
