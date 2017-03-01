@@ -14,6 +14,7 @@ jQuery(document).ready(function () {
     $.getJSON(uri + "JobCoach",
         {token: loginToken},
         function (data) {
+        console.log("Success!!!");
             localStorage.setItem("userList", JSON.stringify(data));
         }).error(function () {
         console.log("USER LIST IS NOT SET");

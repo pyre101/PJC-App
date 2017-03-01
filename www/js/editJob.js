@@ -11,8 +11,20 @@ jQuery(document).ready(function() {
     function editJob()
     {
         //breaks JSON into list
-        var job = JSON.parse(localStorage.getItem('jobList'));
-        Console.log(userjob);
+        //var job = JSON.parse(localStorage.getItem('jobList'));
+        //Console.log(userjob);
+
+        var uri = 'http://pjcdbrebuild2.gear.host/api/';
+        $.getJSON(uri + "JobCoach",
+            {token: loginToken, username: $username},
+            function (data) {
+                window.localStorage.setItem("", JSON.stringify(data));
+            }
+        ).error(function () {
+            console.log("Something went wrong getting the data");
+        }).success(function () {
+            //need to create text boxes filled with data
+        });
 
     }
 });
