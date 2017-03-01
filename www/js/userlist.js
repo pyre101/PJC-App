@@ -17,7 +17,7 @@ jQuery(document).ready(function() {
             $("<div data-role='collapsible'>" +
                 "<h4>" + item.userName + "</h4>" +
                 "<ul data-role='listview' data-inset='true'>" +
-                    "<li><a href='#' onclick='"+getRoutineList(item.userName)+"'>Jobs</a></li>" +
+                    "<li><a href='#' onclick='getRoutineList(\""+item.userName+"\")'>Jobs</a></li>" +
                     "<li><a href='#'>Contact</a></li>" +
                 "</ul>" +
             "</div>").appendTo($("#userList"));
@@ -25,18 +25,21 @@ jQuery(document).ready(function() {
             $('#userList').collapsibleset('refresh');
         });
     }
-
-    function getRoutineList(username) {
-        $.getJSON("http://pjcrebuild2.gear.host/api/Routine",
-            {
-                token: loginToken,
-                username: username
-            },
-            function (data) {
-                localStorage.setItem('jobList', JSON.stringify(data));
-            }
-        ).error(function () {
-            console.log("ROUTINE LIST IS NOT SET");
-        });
-    }
 });
+
+// Link to the appropriate joblist.html for the selected user
+function getRoutineList(username) {
+    var loginToken = window.localStorage.getItem("token");
+
+    $.getJSON("http://pjcrebuild2.gear.host/api/Routine",
+        {
+            token: loginToken,
+            username: username
+        },
+        function (data) {
+            localStorage.setItem('jobList', JSON.stringify(data));
+        }
+    ).error(function () {
+        console.log("ROUTINE LIST IS NOT SET");
+    });
+}

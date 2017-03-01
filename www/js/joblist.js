@@ -8,10 +8,9 @@ jQuery(document).ready(function() {
     displayAllUsersJobs();
 
     function displayAllUsersJobs() {
-        // Get a list of users under the logged in job coach
         var jobList = JSON.parse(localStorage.getItem('jobList'));
 
-        // Loop through list of users jobs and create buttons for each
+        // Loop through list of jobs and create buttons for each
         $.each(jobList, function (key, item) {
             console.log(item.userJob);
             $("<div class='ui-block-solo'><a href='editJob.html' data-ajax='false' +" +
