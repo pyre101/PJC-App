@@ -14,16 +14,19 @@ jQuery(document).ready(function() {
         // Loop through list of users and create an accordion menu for each user
         $.each(userList, function (key, item) {
             console.log(item.userName);
+            var $userName = item.userName;
             $("<div data-role='collapsible'>" +
-                "<h4>" + item.userName + "</h4>" +
-                "<ul data-role='listview' data-inset='true'>" +
-                    "<li><a href='#' onclick='getRoutineList(\""+item.userName+"\")'>Jobs</a></li>" +
-                    "<li><a href='#'>Contact</a></li>" +
-                "</ul>" +
-            "</div>").appendTo($("#userList"));
+                "<h4 id='user'>" + $userName + "</h4>" +
+                "<div data-role='listview' class='ui-grid-a ui-responsive'>" +
+                // TODO: Have the jobs/contact button link correctly
+                    "<div onclick='getRoutineList(\""+$userName+"\")'><a>Jobs</a></div>" +
+                    "<div onclick='getUserInfo(\""+$userName+"\")'><a>Contact</a></div>" +
+                "</div>" +
+                "</div>").appendTo($("#userList"));
 
             $('#userList').collapsibleset('refresh');
         });
+
     }
 });
 
@@ -31,12 +34,13 @@ jQuery(document).ready(function() {
 function getRoutineList(username) {
     var loginToken = window.localStorage.getItem("token");
 
-    $.getJSON("http://pjcrebuild2.gear.host/api/Routine",
+    $.getJSON("http://pjcdbrebuild2.gear.host/api/Routine",
         {
             token: loginToken,
             username: username
         },
         function (data) {
+            console.log(JSON.stringify(data));
             localStorage.setItem('jobList', JSON.stringify(data));
             location.href = "joblist.html";
         }
