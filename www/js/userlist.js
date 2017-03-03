@@ -38,6 +38,7 @@ function getRoutineList(username) {
         },
         function (data) {
             localStorage.setItem('jobList', JSON.stringify(data));
+            location.href = "joblist.html";
         }
     ).error(function () {
         console.log("ROUTINE LIST IS NOT SET");
