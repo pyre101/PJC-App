@@ -5,29 +5,44 @@ jQuery(document).ready(function() {
         keepAliveTwo(loginToken);
     }, 500);
 
+
+
+
     editJob();
+
+
+
+
+});
+
+function addTask()
+{
+    console.log('hi');
+    var list = document.querySelector('#listOfTasks');
+    var toAdd = document.createElement('div');
+    toAdd.innerHTML = `Task Name: <input type="text" name="taskName" width="80%"/><br/>
+				Description: <input type="text" name="description" width="80%"/><br/>
+				Expected Duration:<input type="text" name="expectedDurationTask1" width="80%"/>`;
+    list.appendChild(toAdd)
+    var breakDiv;
+    breakDiv.innerHTML = '<br/>';
+    list.appendChild(breakDiv);
+}
+
 //need to grab data when clicked on jobList to know which job.
     //ajax for localStorage
-    function editJob()
+function editJob()
     {
         //breaks JSON into list
         //var job = JSON.parse(localStorage.getItem('jobList'));
-        //Console.log(userjob);
+        Console.log(userjob);
 
-        var uri = 'http://pjcdbrebuild2.gear.host/api/';
-        $.getJSON(uri + "JobCoach",
-            {token: loginToken, username: $username},
-            function (data) {
-                window.localStorage.setItem("", JSON.stringify(data));
-            }
-        ).error(function () {
-            console.log("Something went wrong getting the data");
-        }).success(function () {
+
             //need to create text boxes filled with data
-        });
+
 
     }
-});
+
 
 
 /*
@@ -53,3 +68,4 @@ $("<div data-role='collapsible' class='individualTask' stepnumber='" + (i+1) + "
     "<a href='#makeNote' data-rel='popup' data-position-to='window' data-transition='pop' class='ui-btn make-note'>Make Note</a>" +
     "</div>").appendTo($("#tasksList"));
 */
+

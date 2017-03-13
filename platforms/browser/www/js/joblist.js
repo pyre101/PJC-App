@@ -5,6 +5,8 @@ jQuery(document).ready(function() {
         keepAliveTwo(loginToken);
     }, 500);
 
+    var listPlace = $("#jobList");
+
     displayAllUsersJobs();
 
     function displayAllUsersJobs() {
@@ -13,14 +15,18 @@ jQuery(document).ready(function() {
 
         // Loop through list of users jobs and create buttons for each
         $.each(jobList, function (key, item) {
-            console.log(item.userJob);
-            $("<div class='ui-block-solo'><a href='editJob.html' data-ajax='false' +" +
-                "class='ui-btn ui-icon-clock ui-btn-icon-top'>" + item.userJob +
-                "</a></div>").appendTo($("jobList"));
+            console.log(item.routineTitle);
+            $("<div class='ui-block-solo'><a href='editJob.html' data-ajax='false' " +
+                "class='ui-btn ui-icon-clock ui-btn-icon-top'>" + item.routineTitle +
+                "</a></div>").appendTo(listPlace);
 
-            $('#jobList').collapsibleset('refresh');
+            listPlace.collapsibleset('refresh');
         });
+        //TODO: Create more of a visual difference between list and add buttons
+    $("<div class='ui-block-solo'><a href='addJob.html' data-ajax='false'" +
+        " class='ui-btn ui-icon-check ui-btn-icon-top' style='background-color: #1d873b'>Add Job</a></div>").appendTo(listPlace);
 
+        listPlace.collapsibleset('refresh');
     }
 });
 
