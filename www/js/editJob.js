@@ -31,11 +31,23 @@ function addTask()
 
 //need to grab data when clicked on jobList to know which job.
     //ajax for localStorage
-function editJob()
+function editJob(routineName)
     {
+        var loginToken = window.localStorage.getItem("token");
         //breaks JSON into list
-        //var job = JSON.parse(localStorage.getItem('jobList'));
+
         Console.log(userjob);
+
+        $.getJSON("http://pjcdbrebuild2.gear.host/api/Routine",
+            {
+                token: loginToken,
+                username: username,
+                routineTitle: routineName
+            },
+            function(data) // put data into text boxes    userinfo.js
+            {
+
+            }
 
 
             //need to create text boxes filled with data
