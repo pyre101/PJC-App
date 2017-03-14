@@ -15,12 +15,12 @@ jQuery(document).ready(function() {
         $.each(userList, function (key, item) {
             console.log(item.userName);
             var $userName = item.userName;
-            $("<div data-role='collapsible'>" +
+            $("<div data-role='collapsible' >" +
                 "<h4 id='user'>" + $userName + "</h4>" +
                 "<div data-role='listview' class='ui-grid-a ui-responsive'>" +
                 // TODO: Have the jobs/contact button link correctly
-                    "<div onclick='getRoutineList(\""+$userName+"\")'><a>Jobs</a></div>" +
-                    "<div onclick='getUserInfo(\""+$userName+"\")'><a>Contact</a></div>" +
+                    "<div onclick='getRoutineList(\""+$userName+"\")' class='ui-btn'>Jobs</div>" +
+                    "<div onclick='getUserInfo(\""+$userName+"\")' class='ui-btn'>Contact</div>" +
                 "</div>" +
                 "</div>").appendTo($("#userList"));
 

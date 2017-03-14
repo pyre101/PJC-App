@@ -10,6 +10,7 @@
     <script type="text/javascript" src="js/chromeLoading.js"></script>
     <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
     <script type="text/javascript" src="js/globalFunctions.js"></script>
+    <script type="text/javascript" src="js/joblist.js"></script>
 
 
     <meta charset="utf-8" />
@@ -30,30 +31,19 @@
 </div>
 
 <div data-role="main" class="ui-content">
-    <h1>Job/Routine List</h1>
+    <h1>Task List</h1>
     <h2>Scheduled for Today</h2>
 
     <div id="jobList" data-role="collapsibleset"></div>
-
-    <div data-role="popup" id="makeNote" data-theme="a" data-overlay-theme="b" class="ui-content">
-        <h3>Make a Note</h3>
-        <form id="noteForm" class="ui-body ui-body-a">
-            <label hidden for="noteName" id="hiddenJobName"></label>
-            <label for="noteName">Subject <input id="nameError" /></label>
-            <input type="text" name="noteName" id="noteName" value="" />
-
-            <label for="note">Note <input id="noteError"/></label>
-            <textarea name="note" id="note"></textarea>
-
-            <div class="ui-grid-a">
-                <div class="ui-block-a"><a href="#" class="ui-btn" id="save">Save</a></div>
-                <div class="ui-block-b"><a href="#" data-rel="back" class="ui-btn" id="cancel">Cancel</a></div>
-            </div>
-        </form>
-    </div>
 </div>
 
-<script type="text/javascript" src="js/joblist.js"></script>
+<div data-role="footer" data-position="fixed">
+    <div data-role="navbar">
+        <ul>
+            <li><a href="ParentCoachSplash.html" data-ajax="false" data-icon="home">Home</a></li>
+        </ul>
+    </div>
+</div>
 
 </body>
 </html>
