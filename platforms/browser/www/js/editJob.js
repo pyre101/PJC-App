@@ -1,6 +1,5 @@
 jQuery(document).ready(function() {
     var loginToken = window.localStorage.getItem("token");
-
     setTimeout(function () {
         keepAliveTwo(loginToken);
     }, 500);
@@ -8,7 +7,7 @@ jQuery(document).ready(function() {
 
 
 
-    editJob();
+    //editJob();
 
 
 
@@ -34,20 +33,21 @@ function addTask()
 function editJob(routineName)
     {
         var loginToken = window.localStorage.getItem("token");
+        var assignedUser = window.localStorage.getItem("user");
         //breaks JSON into list
 
-        Console.log(userjob);
+        console.log("Working");
 
         $.getJSON("http://pjcdbrebuild2.gear.host/api/Routine",
             {
                 token: loginToken,
-                username: username,
+                username: assignedUser,
                 routineTitle: routineName
             },
             function(data) // put data into text boxes    userinfo.js
             {
-
-            }
+                window.localStorage.setItem("RoutineInfo", JSON.stringify(data));
+            });
 
 
             //need to create text boxes filled with data

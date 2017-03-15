@@ -34,6 +34,8 @@ jQuery(document).ready(function() {
 function getRoutineList(username) {
     var loginToken = window.localStorage.getItem("token");
 
+    window.localStorage.setItem("user", username);
+
     $.getJSON("http://pjcdbrebuild2.gear.host/api/Routine",
         {
             token: loginToken,

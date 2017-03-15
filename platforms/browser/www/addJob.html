@@ -12,6 +12,7 @@
     <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
     <script type="text/javascript" src="js/globalFunctions.js"></script>
     <script type="text/javascript" src="js/addJob.js"></script>
+    <script type="text/javascript" src="js/addtask.js"></script>
 	
 
 
@@ -23,7 +24,9 @@
     <a href="joblist.html" data-ajax="false" class="ui-btn ui-icon-carat-l ui-btn-icon-left">Back</a>
     <h1 class="app-name">PARC Pocket Job Coach</h1>
 
-    <a href="#menu" data-rel="popup" data-role="button" data-inline="true" data-icon="gear" class="ui-btn-right">Options</a>
+    <a href="#menu" data-rel="popup" data-role="button" data-inline="true" data-icon="gear" class="ui-btn-right">
+        Options
+    </a>
     <div data-role="popup" id="menu">
         <ul data-role="listview" data-inset="true">
             <li><a href="#" onclick="account()">My Account</a></li>
@@ -33,29 +36,45 @@
 </div>
 
 <div data-role="main" class="ui-content">
-    <h1>ADD JOB</h1>
-	
-	
-	
-	<form>
-		<div width="100%">Title: <input type="text" name="title"></input></div><br>
-		<div width="100%">Timed: <input type="checkbox" name="isTimed"></input></div><br> 
-		<div width="100%">Expected Duration: <input type="text" name="expectedDuration"></input></div><br>
-		<div width="100%">Email on Job Completion: <input type="checkbox" name="wantEmail"></input></div><br> 
-		<h1>Tasks</h1>
-		<ul id="listOfTasks">
-			
-		</ul>
-		<div width="100%"><button type="button" onclick="addJob()">Add Task </button> </div>
-		<input type="submit" value="Create Job" > 
-	</form>
+    <h1>Add Job</h1>
+
+    <form class="ui-body ui-body-a" id="addForm">
+        <label for="jobTitle">Title</label>
+        <input type="text" name="jobTitle" id="jobTitle" />
+
+        <label for="jobTimed">Timed</label>
+        <input type="checkbox" name="jobTimed" id="jobTimed"/>
+
+        <label for="jobExpected">Expected Duration</label>
+        <input type="time" name="jobExpected" id="jobExpected"/>
+
+        <label for="jobEmail">Email on Job Completion</label>
+        <input type="checkbox" name="jobEmail" id="jobEmail"/>
+
+        <!-- TODO: delete/replace the below line of code -->
+        <h2>** TODO: MAYBE SHOW A LIST OF TASKS HERE WITH THE OPTION TO DELETE **</h2>
+
+        <div class="ui-grid-a ui-responsive">
+            <div class="ui-block-solo">
+                <a href="addtask.html" data-ajax="false" class="ui-btn ui-icon-plus ui-btn-icon-top">
+                    Add Task
+                </a>
+            </div>
+            <div class="ui-block-solo">
+                <a href="#" onclick="addJob()" data-ajax="false" class="ui-btn ui-icon-check ui-btn-icon-top">
+                    Submit Job
+                </a>
+            </div>
+        </div>
+
+    </form>
 	 
 </div>
 
 <div data-role="footer" data-position="fixed">
     <div data-role="navbar">
         <ul>
-            <li><a href="splash.html" data-ajax="false" data-icon="home">Home</a></li>
+            <li><a href="ParentCoachSplash.html" data-ajax="false" data-icon="home">Home</a></li>
            
         </ul>
     </div>

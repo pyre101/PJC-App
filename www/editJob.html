@@ -35,11 +35,76 @@
     <label for="JobName">Job Name: </label>
     <input type="text" name="JobName" id="JobName" placeholder="JobName" value="PlaceHolder">
 
-    <label for="EstimatedTime">Estimated Time (00:00:00):</label>
-    <input type="text" name="EstimatedTime" id="EstimatedTime" placeholder="EstimatedTime" value="00:00:00">
+    <label for="EstimatedTime">Estimated Time:</label>
+    <input type="time" name="EstimatedTime" id="EstimatedTime" placeholder="EstimatedTime">
 
     <label for="NumberTasks"># of tasks: </label>
     <input type="text" name="NumberTasks" id="NumberTasks" placeholder="NumberTasks" value="0">
+
+    <label for="RoutineID">RoutineID: </label>
+    <input type="text" name="RoutineID" id="RoutineID" placeholder="RoutineID" value="0">
+
+    <label for="CreatorUserName">Creator UserName: </label>
+    <input type="text" name="CreatorUserName" id="CreatorUserName" placeholder="CreatorUserName" value="0">
+
+    <label for="AssigneeUserName">Assignee UserName: </label>
+    <input type="text" name="AssigneeUserName" id="AssigneeUserName" placeholder="AssigneeUserName" value="0">
+
+    <label for="isTimed">Timed: </label>
+    <input type="text" name="isTimed" id="isTimed" placeholder="isTimed" value="0">
+
+    <label for="updatedDate">Updated Date: </label>
+    <input type="text" name="updatedDate" id="updatedDate" placeholder="updatedDate" value="0">
+
+    <label for="isDisabled">Disabled Status: </label>
+    <input type="text" name="isDisabled" id="isDisabled" placeholder="isDisabled" value="0">
+
+    <label for="isNotifiable">Notifiable: </label>
+    <input type="text" name="isNotifiable" id="isNotifiable" placeholder="isNotifiable" value="0">
+
+    <script>
+        var data = JSON.parse(localStorage.getItem("RoutineInfo"));
+
+        var routineID = document.getElementById("RoutineId");
+        var routineTitle = document.getElementById("JobName");
+        var creator = document.getElementById("CreatorUserName");
+        var assignee = document.getElementById("AssigneeUserName");
+        var isTimed = document.getElementById("isTimed");
+        var duration = document.getElementById("EstimatedTime");
+        var updatedDate = document.getElementById("updatedDate");
+        var isDisabled = document.getElementById("isDisabled");
+        var isNotifiable = document.getElementById("isNotifiable");
+
+        routineID.value = data[0];
+        Console.log(routineID);
+        Console.log(data[0]);
+        creator.value = data[1];
+        Console.log(creator);
+        Console.log(data[1]);
+        assignee.value = data[2];
+        Console.log(assignee);
+        Console.log(data[2]);
+        routineTitle.value = data[3];
+        Console.log(routineTitle);
+        Console.log(data[3]);
+        isTimed.value = data[4];
+        Console.log(isTimed);
+        Console.log(data[4]);
+        duration.value = data[5];
+        Console.log(duration);
+        Console.log(data[5]);
+        isNotifiable.value = data[6];
+        Console.log(isNotifiable);
+        Console.log(data[6]);
+        updatedDate.value = data[7];
+        Console.log(updatedDate);
+        Console.log(data[7]);
+        isDisabled.value = data[8];
+        Console.log(isDisabled);
+        Console.log(data[8]);
+
+
+    </script>
 
     <!--Task area-->
     <!--
