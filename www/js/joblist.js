@@ -16,7 +16,7 @@ jQuery(document).ready(function() {
         // Loop through list of users jobs and create buttons for each
         $.each(jobList, function (key, item) {
             console.log(item.routineTitle);
-            $("<div class='ui-block-solo'><a onclick='editJob(\""+item.routineTitle+"\")href='editJob.html' data-ajax='false' " +
+            $("<div class='ui-block-solo'><a onclick=editJob(\""+item.routineTitle+"\") href='editJob.html' data-ajax='false' " +
                 "class='ui-btn'>" + item.routineTitle +
                 "</a></div>").appendTo(listPlace);
 
