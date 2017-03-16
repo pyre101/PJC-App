@@ -62,3 +62,28 @@ $(document).on("pagecreate", function(){
         keepAliveTwo(loginToken);
     }, 500);
 });
+
+function Submit(){
+	var arrOfTask;
+		if(localStorage.getItem('current') == null)
+		{
+			arrOfTask = [];
+		}
+		else
+		{
+			arrOfTask = JSON.parse(localStorage.getItem('current')); 
+		}			
+	 
+	var task = {"name": document.getElementById("taskName").value,
+		"description": document.getElementById("taskDesc").value,
+		"category": document.getElementById("taskCat").value,
+		"timed": document.getElementById("taskTimed").value,
+		"duration": document.getElementById("taskExpected").value
+	};
+	
+	arrOfTask = [task , ...arrOfTask]; 
+	
+	//console.log(task);
+	localStorage.setItem('current',JSON.stringify(arrOfTask));
+	console.log(JSON.parse(localStorage.getItem('current'))); 
+}

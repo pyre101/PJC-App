@@ -3,7 +3,19 @@
 // ****************************************
 // *  Copied structure from loginPage.js  *
 // ****************************************
-
+function displayTasks()
+{
+	var information = JSON.parse(localStorage.getItem("current"))[0];
+	console.log(information);
+	var list = document.querySelector('#listOfTasks'); 
+	var toAdd = document.createElement('ul');
+	toAdd.innerHTML = `<li>Title: `+ information.name +`</li>
+					   <li>Description: ` + information.description + `</li>
+					   <li>Category: ` + information.category + `</li>
+					   <li>Timed: ` + information.timed + `</li> 
+					   <li>Duration: ` + information.duration + `</li>`;
+	list.append(toAdd); 
+}
 
 function addJob() {
     jQuery(document).ready(function () {
