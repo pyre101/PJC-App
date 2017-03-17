@@ -5,16 +5,33 @@
 // ****************************************
 function displayTasks()
 {
-	var information = JSON.parse(localStorage.getItem("current"))[0];
-	console.log(information);
 	var list = document.querySelector('#listOfTasks'); 
-	var toAdd = document.createElement('ul');
-	toAdd.innerHTML = `<li>Title: `+ information.name +`</li>
-					   <li>Description: ` + information.description + `</li>
-					   <li>Category: ` + information.category + `</li>
-					   <li>Timed: ` + information.timed + `</li> 
-					   <li>Duration: ` + information.duration + `</li>`;
-	list.append(toAdd); 
+	var taskList = JSON.parse(localStorage.getItem("current"));
+	if(taskList != null)
+	{
+		for(var i = 0; i < taskList.length; i++)
+		{
+			var information = taskList[i]; 
+			console.log(information);
+			
+			var toAdd = document.createElement('ul');
+			toAdd.innerHTML = `<li>Title: `+ information.name +`</li>
+							   <li>Description: ` + information.description + `</li>
+							   <li>Category: ` + information.category + `</li>
+							   <li>Timed: ` + information.timed + `</li> 
+							   <li>Duration: ` + information.duration + `</li>`;
+			list.append(toAdd); 
+		}
+	}
+	else
+	{
+		console.log("tasks is empty"); 
+	}
+}
+
+function resetTasks()
+{
+	localStorage.removeItem("current"); 
 }
 
 function addJob() {
