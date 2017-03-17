@@ -3,7 +3,7 @@
 // ****************************************
 // *  Copied structure from loginPage.js  *
 // ****************************************
-function displayTasks()
+window.onload = function displayTasks()
 {
 	var list = document.querySelector('#listOfTasks'); 
 	var taskList = JSON.parse(localStorage.getItem("current"));
@@ -15,6 +15,7 @@ function displayTasks()
 			console.log(information);
 			
 			var toAdd = document.createElement('ul');
+			toAdd.style.cssText = `list-style:none`;
 			toAdd.innerHTML = `<li>Title: `+ information.name +`</li>
 							   <li>Description: ` + information.description + `</li>
 							   <li>Category: ` + information.category + `</li>
@@ -70,4 +71,6 @@ function addJob() {
             }
         });
     });
+	//Uncomment when addJob is working correctly
+	//resetTasks(); 
 }

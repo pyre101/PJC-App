@@ -11,7 +11,7 @@ jQuery(document).ready(function () {
 $(document).on("pagecreate", function(){
     var uri = 'http://pjcdbrebuild2.gear.host/api/';
     var loginToken = window.localStorage.getItem("token");
-
+	Submit(); 
     $("#save").click(function(){
         var taskName = document.getElementById("taskName").value;
         var taskDesc = document.getElementById("taskDesc").value;
@@ -73,17 +73,27 @@ function Submit(){
 		{
 			arrOfTask = JSON.parse(localStorage.getItem('current')); 
 		}			
-	 
-	var task = {"name": document.getElementById("taskName").value,
-		"description": document.getElementById("taskDesc").value,
-		"category": document.getElementById("taskCat").value,
-		"timed": document.getElementById("taskTimed").value,
-		"duration": document.getElementById("taskExpected").value
-	};
-	
-	arrOfTask = [task , ...arrOfTask]; 
-	
-	//console.log(task);
-	localStorage.setItem('current',JSON.stringify(arrOfTask));
-	console.log(JSON.parse(localStorage.getItem('current'))); 
+	if( !(document.getElementById("taskName").value == null &&  
+	document.getElementById("taskDesc").value == null && 
+	document.getElementById("taskCat").value == null && 
+	document.getElementById("taskTimed").value == null &&
+	document.getElementById("taskExpected").value == null))
+	{
+		var task = {"name": document.getElementById("taskName").value,
+			"description": document.getElementById("taskDesc").value,
+			"category": document.getElementById("taskCat").value,
+			"timed": document.getElementById("taskTimed").value,
+			"duration": document.getElementById("taskExpected").value
+		};
+		
+		arrOfTask = [ ...arrOfTask, task]; 
+		
+		//console.log(task);
+		localStorage.setItem('current',JSON.stringify(arrOfTask));
+		//console.log(JSON.parse(localStorage.getItem('current'))); 
+	}
+	else
+	{
+		console.log("Cannot have empty list");
+	}
 }
