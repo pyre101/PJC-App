@@ -18,7 +18,7 @@ window.onload = function displayTasks()
 			toAdd.style.cssText = `list-style:none`;
 			toAdd.innerHTML = `<li>Title: `+ information.name +`</li>
 							   <li>Description: ` + information.description + `</li>
-							   <li>Category: ` + information.category + `</li>
+							   <li>Category: ` + information.category.categoryName + `</li>
 							   <li>Timed: ` + information.timed + `</li> 
 							   <li>Duration: ` + information.duration + `</li>`;
 			list.append(toAdd); 
@@ -44,6 +44,8 @@ function addJob() {
         var jobTimed=$('#jobTimed').val();
         var jobExpected=$('#jobExpected').val();
         var jobEmail=$('#jobEmail').val();
+		var arrOfTasks = JSON.parse(window.localStorage.getItem("current"));
+		console.log(arrOfTasks); 
 
         var job = {
             'Title': jobTitle,

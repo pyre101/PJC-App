@@ -3,11 +3,12 @@
 // ************************************
 // *  Copied structure from notes.js  *
 // ************************************
-
+/*
 jQuery(document).ready(function () {
 
 });
-
+*/
+/*
 $(document).on("pagecreate", function(){
     var uri = 'http://pjcdbrebuild2.gear.host/api/';
     var loginToken = window.localStorage.getItem("token");
@@ -62,6 +63,7 @@ $(document).on("pagecreate", function(){
         keepAliveTwo(loginToken);
     }, 500);
 });
+*/
 
 function Submit(){
 	var arrOfTask;
@@ -81,16 +83,17 @@ function Submit(){
 	{
 		var task = {"name": document.getElementById("taskName").value,
 			"description": document.getElementById("taskDesc").value,
-			"category": document.getElementById("taskCat").value,
+			"category": {"categoryName":document.getElementById("taskCat").value},
 			"timed": document.getElementById("taskTimed").value,
 			"duration": document.getElementById("taskExpected").value
 		};
 		
-		arrOfTask = [ ...arrOfTask, task]; 
+		arrOfTask.push(task);  
 		
 		//console.log(task);
 		localStorage.setItem('current',JSON.stringify(arrOfTask));
 		//console.log(JSON.parse(localStorage.getItem('current'))); 
+		location.href="addJob.html"; 
 	}
 	else
 	{
