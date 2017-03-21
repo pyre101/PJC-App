@@ -6,14 +6,14 @@
     <link rel="stylesheet" href="js/theme.min.css" />
     <link rel="stylesheet" href="js/jquery.mobile.icons.min.css" />
     <link rel="stylesheet" href="css/splash.css" />
-	<link rel="stylesheet" href="css/addJob.css" /> 
+    <link rel="stylesheet" href="css/addJob.css" />
     <script type="text/javascript" src="js/jquery-1.12.0.min.js"></script>
     <script type="text/javascript" src="js/chromeLoading.js"></script>
     <script type="text/javascript" src="js/jquery.mobile-1.4.5.js"></script>
     <script type="text/javascript" src="js/globalFunctions.js"></script>
     <script type="text/javascript" src="js/addJob.js"></script>
-   <!-- <script type="text/javascript" src="js/addtask.js"></script> --> 
-	
+    <!-- <script type="text/javascript" src="js/addtask.js"></script> -->
+
 
 
     <meta charset="utf-8" />
@@ -51,12 +51,24 @@
         <label for="jobEmail">Email on Job Completion</label>
         <input type="checkbox" name="jobEmail" id="jobEmail"/>
 
-       
-		<div id="listOfTasks"> </div> 
+        <script>
+            var job = localStorage.getItem("job");
+            if(job != null){
+                jQuery(document).ready(function () {
+                    $("#jobTitle").innerHTML = job.routineTitle;
+                    $("#jobTimed").checked = job.isTimed;
+                    $("#jobExpected").innerHTML = job.expectedDuration;
+                    $("#jobEmail").checked = job.isNotifiable;
+                })
+            }
+        </script>
+
+
+        <div id="listOfTasks"> </div>
 
         <div class="ui-grid-a ui-responsive">
             <div class="ui-block-solo">
-                <a href="addtask.html" data-ajax="false" class="ui-btn ui-icon-plus ui-btn-icon-top">
+                <a onclick="addTask()" data-ajax="false" class="ui-btn ui-icon-plus ui-btn-icon-top">
                     Add Task
                 </a>
             </div>
@@ -65,19 +77,19 @@
                     Submit Job
                 </a>
             </div>
-			<!--<Button onclick="displayTasks()"> Display Tasks </Button> -->  
-			<Button onclick="resetTasks()"> Reset Tasks </Button> 
+            <!--<Button onclick="displayTasks()"> Display Tasks </Button> -->
+            <Button onclick="resetTasks()"> Reset Tasks </Button>
         </div>
 
     </form>
-	 
+
 </div>
 
 <div data-role="footer" data-position="fixed">
     <div data-role="navbar">
         <ul>
             <li><a href="ParentCoachSplash.html" data-ajax="false" data-icon="home">Home</a></li>
-           
+
         </ul>
     </div>
 </div>
