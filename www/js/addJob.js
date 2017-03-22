@@ -72,7 +72,7 @@ function addJob() {
         var uri = 'http://pjcdbrebuild2.gear.host/api/';
         var loginToken = window.localStorage.getItem("token");
         var jobTitle=$('#jobTitle').val();
-        var jobTimed=$('#jobTimed').val();
+        var jobTimed=$('#jobTimed').checked;
         var jobExpected=$('#jobExpected').val();
         var jobEmail=$('#jobEmail').val();
         var arrOfTasks = JSON.parse(window.localStorage.getItem("current"));
