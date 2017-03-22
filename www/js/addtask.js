@@ -79,13 +79,13 @@ function Submit(){
     if( !(document.getElementById("taskName").value == null &&
         document.getElementById("taskDesc").value == null &&
         document.getElementById("taskCat").value == null &&
-        document.getElementById("taskTimed").value == null &&
+        document.getElementById("taskTimed").checked == null &&
         document.getElementById("taskExpected").value == null))
     {
         var task = {"name": document.getElementById("taskName").value,
             "description": document.getElementById("taskDesc").value,
             "category": {"categoryName":document.getElementById("taskCat").value},
-            "timed": document.getElementById("taskTimed").value,
+            "timed": document.getElementById("taskTimed").checked,
             "duration": document.getElementById("taskExpected").value
         };
         
