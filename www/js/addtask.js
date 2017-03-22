@@ -9,7 +9,7 @@ jQuery(document).ready(function () {
 });
 
 $(document).on("pagecreate", function(){
-    var uri = 'http://localhost:43393/api/';
+    var uri = 'http://pjcdbrebuild2.gear.host/api/';
     var loginToken = window.localStorage.getItem("token");
     Submit();
     $("#save").click(function(){
