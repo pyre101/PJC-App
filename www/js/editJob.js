@@ -4,10 +4,10 @@ jQuery(document).ready(function() {
         keepAliveTwo(loginToken);
     }, 500);
 
-
+	//editJob();
 });
 
-    //editJob();
+    
 
 
 
@@ -28,30 +28,70 @@ function addTask()
     list.appendChild(breakDiv);
 }
 
+
+
 //need to grab data when clicked on jobList to know which job.
     //ajax for localStorage
-function editJob(routineName)
+function editJob()
     {
+		var currentRoutine = JSON.parse(window.localStorage.getItem('currentRoutine'));
         var loginToken = window.localStorage.getItem('token');
         var assignedUser = window.localStorage.getItem('user');
         var listPlace = $('#RoutineDiv');
         //breaks JSON into list
 
-        console.log('Working');
-
+        //console.log('Working');
+		//console.log(JSON.parse(localStorage.getItem('jobList'))); 
         // Get a list of users under the logged in job coach
         var jobList = JSON.parse(localStorage.getItem('jobList'));
-
+		//console.log(jobList); 
+		
         // Loop through list of users jobs and create buttons for each
+		for(var i = 0; i < jobList.length; i++)
+		{
+			
+			//console.log(jobList[i].routineTitle + " " + currentRoutine);
+			if(jobList[i].routineTitle == currentRoutine)
+			{
+				currentRoutine = jobList[i]; 
+			}
+		}
+		//console.log(currentRoutine); 
+		var toAppend = document.createElement('div'); 
+		toAppend.id = 'RoutineInfo'; 
+		toAppend.innerHTML = `Title: <input type='text' id='routineTitle' value='`+currentRoutine.routineTitle +`' /><br/> 
+							  Timed: <input type='checkbox' id='jobTimed' value='`+currentRoutine.isTimed +`' /> <br/> 
+							  Expected Duration: <input type='time' id='expectedDuration' value='`+currentRoutine.expectedDuration+`' /> <br/>
+							  Email on Job Completion: <input type='checkbox' id='isNotifiable' value'`+ currentRoutine.isNotifiable +`' /> <br/>
+							  <h1> Tasks </h1> <br/>`;
+							  
+		
+							  
+		listPlace.append(toAppend); 
+		for(var i = 0; i < currentRoutine.Tasks.length; i++)
+		{
+			console.log(currentRoutine.Tasks[i]);
+			toAppend = document.createElement('div'); 
+			toAppend.id = 'Task' + i; 
+			toAppend.innerHTML = `<button id="task`+ i +`" onclick="editTask(`+i+`)"> Task: `+ currentRoutine.Tasks[i].taskName+`</button>`; 
+			var listPlace = document.getElementById('RoutineInfo');
+		listPlace.append(toAppend); 
+			
+		}
+		
+		
+		
+		
+		/*
         $.each(jobList, function (key, item) {
 
-            
+            console.log(item.routineTitle +" " + routineName); 
             if(item.routineTitle == routineName) {
-                console.log(item.routineTitle + " data is here");
+                console.log(item.routineTitle);
 
                 toAppend = document.createElement('div');
                 toAppend.innerHTML =
-                    '<div class="jobName"> Job Name </div> <input type="text" id="JobName" value=\""+ item.routineTitle+"\"/>'
+                    `<div>hello</div>`; 
                 /*
                     "<div class='ui-block-solo'>"+
                    "<label for='JobName'>Job Name: </label>"+
@@ -85,11 +125,12 @@ function editJob(routineName)
                 "<input type='text' name='isNotifiable' id='isNotifiable' placeholder='isNotifiable' value=\""+item.isNotifiable+"\">"+
                     
                     "</div>";
-                    */
+                    
                 listPlace.append(toAppend);
 
             }
-        });
+			*/
+        
         
         
         /*

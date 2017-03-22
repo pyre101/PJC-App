@@ -1,3 +1,18 @@
+
+function editJob(routineName)
+{
+		console.log("in editJob with: " + routineName); 
+		localStorage.setItem("currentRoutine", JSON.stringify(routineName)); 
+		document.location.href = "editJob.html"; 
+	
+}
+
+
+
+
+
+
+
 jQuery(document).ready(function() {
     var loginToken = window.localStorage.getItem("token");
 
@@ -7,16 +22,20 @@ jQuery(document).ready(function() {
 
     var listPlace = $("#jobList");
 
+	
     displayAllUsersJobs();
 
+	
+	
     function displayAllUsersJobs() {
         // Get a list of users under the logged in job coach
         var jobList = JSON.parse(localStorage.getItem('jobList'));
 
         // Loop through list of users jobs and create buttons for each
         $.each(jobList, function (key, item) {
-            console.log(item.routineTitle);
-            $("<div class='ui-block-solo'><a onclick='editJob(\""+item.routineTitle+"\")' href='editJob.html' data-ajax='false' " +
+            //console.log(item.routineTitle);
+			// href='editJob.html'
+            $("<div class='ui-block-solo'><a onclick='editJob(\""+item.routineTitle+"\")'  data-ajax='false' " +
                 "class='ui-btn'>" + item.routineTitle +
                 "</a></div>").appendTo(listPlace);
 
