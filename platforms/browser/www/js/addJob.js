@@ -3,7 +3,37 @@
 // ****************************************
 // *  Copied structure from loginPage.js  *
 // ****************************************
+window.onload = function displayTasks()
+{
+	var list = document.querySelector('#listOfTasks'); 
+	var taskList = JSON.parse(localStorage.getItem("current"));
+	if(taskList != null)
+	{
+		for(var i = 0; i < taskList.length; i++)
+		{
+			var information = taskList[i]; 
+			console.log(information);
+			
+			var toAdd = document.createElement('ul');
+			toAdd.style.cssText = `list-style:none`;
+			toAdd.innerHTML = `<li>Title: `+ information.name +`</li>
+							   <li>Description: ` + information.description + `</li>
+							   <li>Category: ` + information.category + `</li>
+							   <li>Timed: ` + information.timed + `</li> 
+							   <li>Duration: ` + information.duration + `</li>`;
+			list.append(toAdd); 
+		}
+	}
+	else
+	{
+		console.log("tasks is empty"); 
+	}
+}
 
+function resetTasks()
+{
+	localStorage.removeItem("current"); 
+}
 
 function addJob() {
     jQuery(document).ready(function () {
@@ -41,4 +71,6 @@ function addJob() {
             }
         });
     });
+	//Uncomment when addJob is working correctly
+	//resetTasks(); 
 }
