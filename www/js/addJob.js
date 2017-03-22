@@ -14,14 +14,17 @@ window.onload = function displayTasks()
             var information = taskList[i];
             console.log(information);
 
-            var toAdd = document.createElement('ul');
-            toAdd.style.cssText = 'list-style:none';
-            toAdd.innerHTML = '<li>Title: '+ information.name +'</li>' +
-                '<li>Description: ' + information.description + '</li>' +
-                '<li>Category: ' + information.category.categoryName + '</li>' +
-                '<li>Timed: ' + information.timed + '</li>' +
-                '<li>Duration: ' + information.duration + '</li>';
-            list.append(toAdd);
+            $('<div data-role="collapsible">' +
+                '<h4>' + information.name + '</h4>' +
+                '<div data-role="listview" class="ui-grid-a ui-responsive">' +
+                '<div>Description: ' + information.description + '</div>' +
+                '<div>Category: ' + information.category.categoryName + '</div>' +
+                '<div>Timed: ' + information.timed + '</div>' +
+                '<div>Duration: ' + information.duration + '</div>' +
+                '</div>' +
+                '</div>').appendTo(list);
+
+            $(list).collapsibleset('refresh');
         }
     }
     else
