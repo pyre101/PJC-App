@@ -1,10 +1,24 @@
+function editTask(taskToEdit)
+{
+	var currentRoutine = JSON.parse(window.localStorage.getItem('currentRoutine'));
+	
+	var jobList = JSON.parse(localStorage.getItem('jobList'));
+	
+	console.log(currentRoutine.Tasks[taskToEdit].taskName); 
+	localStorage.setItem("currentEditJob", JSON.stringify(currentRoutine.Tasks[taskToEdit])); 
+	document.location.href = "editTask.html"; 
+}
+
+
+
+
 jQuery(document).ready(function() {
     var loginToken = window.localStorage.getItem('token');
     setTimeout(function () {
         keepAliveTwo(loginToken);
     }, 500);
 
-	//editJob();
+	editJob();
 });
 
     
@@ -56,6 +70,7 @@ function editJob()
 				currentRoutine = jobList[i]; 
 			}
 		}
+		window.localStorage.setItem("currentRoutine", JSON.stringify(currentRoutine)); 
 		//console.log(currentRoutine); 
 		var toAppend = document.createElement('div'); 
 		toAppend.id = 'RoutineInfo'; 
@@ -73,9 +88,9 @@ function editJob()
 			console.log(currentRoutine.Tasks[i]);
 			toAppend = document.createElement('div'); 
 			toAppend.id = 'Task' + i; 
-			toAppend.innerHTML = `<button id="task`+ i +`" onclick="editTask(`+i+`)"> Task: `+ currentRoutine.Tasks[i].taskName+`</button>`; 
+			toAppend.innerHTML = `<div class="ui-block-solo"><a  id="task`+ i +`" class='ui-btn' onclick="editTask(`+i+`)"> Edit Task: `+ currentRoutine.Tasks[i].taskName+`</a></div>`; 
 			var listPlace = document.getElementById('RoutineInfo');
-		listPlace.append(toAppend); 
+			listPlace.append(toAppend); 
 			
 		}
 		
