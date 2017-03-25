@@ -9,7 +9,7 @@ jQuery(document).ready(function () {
 });
 
 $(document).on("pagecreate", function(){
-    var uri = 'http://pjcdbrebuild2.gear.host/api/';
+    var uri = 'http://localhost:43393/api/';
     var loginToken = window.localStorage.getItem("token");
     Submit();
     $("#save").click(function(){
@@ -68,9 +68,11 @@ $(document).on("pagecreate", function(){
 
 function Submit(){
     var arrOfTask;
+    var sequenceNum = localStorage.getItem("sequence");
     if(localStorage.getItem('current') == null)
     {
         arrOfTask = [];
+        sequenceNum = 1;
     }
     else
     {
@@ -79,16 +81,19 @@ function Submit(){
     if( !(document.getElementById("taskName").value == null &&
         document.getElementById("taskDesc").value == null &&
         document.getElementById("taskCat").value == null &&
-        document.getElementById("taskTimed").checked == null &&
+        //document.getElementById("taskTimed").value == null && #will never be null
         document.getElementById("taskExpected").value == null))
     {
-        var task = {"name": document.getElementById("taskName").value,
-            "description": document.getElementById("taskDesc").value,
-            "category": {"categoryName":document.getElementById("taskCat").value},
-            "timed": document.getElementById("taskTimed").checked,
-            "duration": document.getElementById("taskExpected").value
+        var task = {"sequenceNo": sequenceNum,
+            "taskName": document.getElementById("taskName").value,
+            "taskDescription": document.getElementById("taskDesc").value,
+            "TaskCategory": {"categoryName":document.getElementById("taskCat").value},
+            "isTimed": document.getElementById("taskTimed").checked,
+            "expectedDuration": document.getElementById("taskExpected").value
         };
-        
+        sequenceNum++;
+        localStorage.setItem("sequence", sequenceNum);
+
         arrOfTask.push(task);
 
         //console.log(task);

@@ -8,6 +8,11 @@ jQuery(document).ready(function() {
     displayAllUsersForCoach();
 
     function displayAllUsersForCoach() {
+        //Remove routines and tasks that are being created or edited
+        localStorage.removeItem("current");
+        localStorage.removeItem("job");
+        localStorage.removeItem("sequence");
+
         // Get a list of users under the logged in job coach
         var userList = JSON.parse(localStorage.getItem('userList'));
 
@@ -36,7 +41,7 @@ function getRoutineList(username) {
 
     window.localStorage.setItem("user", username);
 
-    $.getJSON("http://pjcdbrebuild2.gear.host/api/Routine",
+    $.getJSON("http://localhost:43393/api/Routine",
         {
             token: loginToken,
             username: username

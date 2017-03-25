@@ -14,17 +14,14 @@ window.onload = function displayTasks()
             var information = taskList[i];
             console.log(information);
 
-            $('<div data-role="collapsible">' +
-                '<h4>' + information.name + '</h4>' +
-                '<div data-role="listview" class="ui-grid-a ui-responsive">' +
-                '<div>Description: ' + information.description + '</div>' +
-                '<div>Category: ' + information.category.categoryName + '</div>' +
-                '<div>Timed: ' + information.timed + '</div>' +
-                '<div>Duration: ' + information.duration + '</div>' +
-                '</div>' +
-                '</div>').appendTo(list);
-
-            $(list).collapsibleset('refresh');
+            var toAdd = document.createElement('ul');
+            toAdd.style.cssText = 'list-style:none';
+            toAdd.innerHTML = '<li>Title: '+ information.taskName +'</li>' +
+                '<li>Description: ' + information.taskDescription + '</li>' +
+                '<li>Category: ' + information.TaskCategory.categoryName + '</li>' +
+                '<li>Timed: ' + information.isTimed + '</li>' +
+                '<li>Duration: ' + information.expectedDuration + '</li>';
+            list.append(toAdd);
         }
     }
     else
@@ -41,9 +38,9 @@ function resetTasks()
 function addTask() {
     var arrOfTasks = JSON.parse(localStorage.getItem("current"));
     var jobTitle=$('#jobTitle').val();
-    var jobTimed=$('#jobTimed').val();
+    var jobTimed=document.getElementById('jobTimed').checked;
     var jobExpected=$('#jobExpected').val();
-    var jobEmail=$('#jobEmail').val();
+    var jobEmail=document.getElementById('jobEmail').checked;
     if(arrOfTasks == null || arrOfTasks[0] == null){
         var job = {
             'creatorUserName': null, //to be added on backend
@@ -69,18 +66,18 @@ function addTask() {
 function addJob() {
     jQuery(document).ready(function () {
         // TODO: update api url
-        var uri = 'http://pjcdbrebuild2.gear.host/api/';
+        var uri = 'http://localhost:43393/api/';
         var loginToken = window.localStorage.getItem("token");
         var jobTitle=$('#jobTitle').val();
-        var jobTimed=$('#jobTimed').checked;
+        var jobTimed=document.getElementById('jobTimed').checked;
         var jobExpected=$('#jobExpected').val();
-        var jobEmail=$('#jobEmail').val();
+        var jobEmail=document.getElementById('jobEmail').checked;
         var arrOfTasks = JSON.parse(window.localStorage.getItem("current"));
         console.log(arrOfTasks);
-
+        var job;
 
         if(window.localStorage.getItem("job") == null){
-            var job = {
+            job = {
                 'creatorUserName': null, //to be added on backend
                 'assigneeUserName': localStorage.getItem("user"),
                 'routineTitle': jobTitle,
@@ -90,30 +87,41 @@ function addJob() {
                 'Tasks': arrOfTasks,
                 'Feedbacks' : []};
         }
+        else {
+            job = JSON.parse(window.localStorage.getItem("job"));
+            job.Tasks = arrOfTasks;
+        }
 
 
         setTimeout(function() {
             keepAliveTwo(loginToken);
         }, 500);
 
-
+        var data = {token: loginToken, create: "c", model: JSON.stringify(job)};
+        console.log(job);
         $.ajax({
             type: 'POST',
-            dataType: 'json',
-            token: loginToken,
-            create: "c",
-            model: job,
-            url: uri,
+            dataType: 'application/json',
+            data: data,
+            url: uri + "Routine",
             success: function (data) {
                 // TODO: make it do stuff?
                 console.log(data);
+                localStorage.removeItem("job");
+                localStorage.removeItem("current");
+                localStorage.removeItem("sequence");
+                window.location.href = "joblist.html";
                 //window.localStorage.setItem("job", data);
             },
-            error: function () {
+            error: function (data) {
+                console.log(data);
                 console.log("JOB WAS NOT ADDED");
             }
         });
+        /*$.post(uri+"Routine",{token: loginToken, create: "c", model: JSON.stringify(job)}, function (data) {
+            console.log(data);
+        })*/
     });
     //Uncomment when addJob is working correctly
-    //resetTasks(); 
+    resetTasks();
 }
