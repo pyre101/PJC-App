@@ -41,7 +41,7 @@ function getRoutineList(username) {
 
     window.localStorage.setItem("user", username);
 
-    $.getJSON("http://localhost:43393/api/Routine",
+    $.getJSON("http://pjcdbrebuild2.gear.host/api/Routine",
         {
             token: loginToken,
             username: username

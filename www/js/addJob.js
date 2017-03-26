@@ -66,7 +66,7 @@ function addTask() {
 function addJob() {
     jQuery(document).ready(function () {
         // TODO: update api url
-        var uri = 'http://localhost:43393/api/';
+        var uri = 'http://pjcdbrebuild2.gear.host/api/';
         var loginToken = window.localStorage.getItem("token");
         var jobTitle=$('#jobTitle').val();
         var jobTimed=document.getElementById('jobTimed').checked;

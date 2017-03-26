@@ -8,6 +8,11 @@ jQuery(document).ready(function() {
     displayAllUsersForCoach();
 
     function displayAllUsersForCoach() {
+        //Remove routines and tasks that are being created or edited
+        localStorage.removeItem("current");
+        localStorage.removeItem("job");
+        localStorage.removeItem("sequence");
+
         // Get a list of users under the logged in job coach
         var userList = JSON.parse(localStorage.getItem('userList'));
 
