@@ -97,7 +97,7 @@ function addJob() {
             keepAliveTwo(loginToken);
         }, 500);
 
-        var data = {token: loginToken, create: "c", model: JSON.stringify(job)};
+        var data = {token: loginToken, create: "c", model: JSON.stringify(job)};   //use 'm' to modify and 'd' to delete
         console.log(job);
         $.ajax({
             type: 'POST',
