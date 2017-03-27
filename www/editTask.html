@@ -19,6 +19,40 @@
 		<a href="editJob.html" data-ajax="false" class="ui-btn ui-icon-carat-l ui-btn-icon-left">Back</a>
 		<h1 class="app-name">PARC Pocket Job Coach</h1>
 
+
+
+		<div data-role="main" class="ui-content" id="TaskDiv">
+
+
+		<form class="ui-body ui-body-a" id="taskForm">
+			<label for="taskName">Name</label>
+			<input type="text" name="taskName" id="taskName" />
+
+			<label for="taskDesc">Description</label>
+			<textarea cols="40" rows="100" name="task" id="taskDesc"></textarea>
+
+			<label for="taskCat">Category</label>
+			<select name="taskCat" id="taskCat">
+				<option value="Custodial">Custodial</option>
+				<option value="Hosting">Hosting</option>
+				<option value="Maintenance">Maintenance</option>
+				<option value="Gardening">Gardening</option>
+				<option value="Help">Help</option>
+			</select>
+
+			<label for="taskTimed">Timed</label>
+			<input type="checkbox" name="taskTimed" id="taskTimed"/>
+
+			<label for="taskExpected">Expected Duration</label>
+			<input type="time" name="taskExpected" id="taskExpected"/>
+
+			<div class="ui-grid-a ui-responsive">
+				<div class="ui-block-a"><a onclick="Submit()" class="ui-btn" id="save">Save</a></div>
+				<div class="ui-block-b"><a href="#" class="ui-btn" id="cancel">Cancel</a></div>
+			</div>
+		</form>
+
+
 		<a href="#menu" data-rel="popup" data-role="button" data-inline="true" data-icon="gear" class="ui-btn-right">Options</a>
 		<div data-role="popup" id="menu">
 			<ul data-role="listview" data-inset="true">
