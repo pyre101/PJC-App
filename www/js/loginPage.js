@@ -1,15 +1,14 @@
-//window.addEventListener('load', loadHandler);
+
 function submitLogin() {
    jQuery(document).ready(function() {
 	   var uri = 'http://pjcdbrebuild2.gear.host/api/Login';
 	   var day = new Date();
 	   var now = day.getTime();
-     var name=$('#username').val();
+       var name=$('#username').val();
        var login = {
-             'UserName': name,//$('#username').val(),
+             'UserName': name,
              'Password': $('#password').val(),
              'RememberMe': $('#remember').is(':checked')};
-
 
         $.ajax({
              type: 'POST',
@@ -26,11 +25,8 @@ function submitLogin() {
                  }
                  else
                      window.location.href = 'splash.html';
-                 //window.location.href = 'splash.html';
-                localStorage.setItem('userName',name); 
 
-                //$.mobile.changePage('splash.html', {transition: "slideup", changeHash: false});
-                //$('#data').html(window.localStorage.getItem("token"));
+                localStorage.setItem('userName',name);
              },
              error: function () {
                  var error = jQuery("#error");
@@ -52,6 +48,5 @@ jQuery(document).ready(function() {
        }
        else
            window.location.href = 'splash.html';
-        }
-   //else console.log("token is null");
+   }
 });

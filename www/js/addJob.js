@@ -14,14 +14,16 @@ window.onload = function displayTasks()
             var information = taskList[i];
             console.log(information);
 
-            var toAdd = document.createElement('ul');
-            toAdd.style.cssText = 'list-style:none';
-            toAdd.innerHTML = '<li>Title: '+ information.taskName +'</li>' +
-                '<li>Description: ' + information.taskDescription + '</li>' +
-                '<li>Category: ' + information.TaskCategory.categoryName + '</li>' +
-                '<li>Timed: ' + information.isTimed + '</li>' +
-                '<li>Duration: ' + information.expectedDuration + '</li>';
-            list.append(toAdd);
+            $('<div data-role="collapsible">' +
+                '<h4>' + information.name + '</h4>' +
+                '<div data-role="listview" class="ui-grid-a ui-responsive">' +
+                '<div>Description: ' + information.description + '</div>' +
+                '<div>Category: ' + information.category.categoryName + '</div>' +
+                '<div>Timed: ' + information.timed + '</div>' +
+                '<div>Duration: ' + information.duration + '</div>' +
+                '</div>' +
+                '</div>').appendTo(list);
+            $(list).collapsibleset('refresh');
         }
     }
     else
@@ -65,7 +67,6 @@ function addTask() {
 
 function addJob() {
     jQuery(document).ready(function () {
-        // TODO: update api url
         var uri = 'http://pjcdbrebuild2.gear.host/api/';
         var loginToken = window.localStorage.getItem("token");
         var jobTitle=$('#jobTitle').val();
@@ -105,7 +106,6 @@ function addJob() {
             data: data,
             url: uri + "Routine",
             success: function (data) {
-                // TODO: make it do stuff?
                 console.log(data);
                 localStorage.removeItem("job");
                 localStorage.removeItem("current");
