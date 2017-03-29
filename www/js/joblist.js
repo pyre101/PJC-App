@@ -1,8 +1,8 @@
 
-function editJob(routineName)
+function editJob(currentRoutine)
 {
-		console.log("in editJob with: " + routineName); 
-		localStorage.setItem("currentRoutine", JSON.stringify(routineName)); 
+		console.log("in editJob with: " + currentRoutine);
+		localStorage.setItem("currentRoutine", JSON.stringify(currentRoutine));
 		document.location.href = "editJob.html"; 
 	
 }

@@ -6,7 +6,7 @@
 window.onload = function displayTasks()
 {
     var list = document.querySelector('#listOfTasks');
-    var taskList = JSON.parse(localStorage.getItem("current"));
+    var taskList = JSON.parse(localStorage.getItem("currentTasks"));
     if(taskList != null)
     {
         for(var i = 0; i < taskList.length; i++)
@@ -34,11 +34,11 @@ window.onload = function displayTasks()
 
 function resetTasks()
 {
-    localStorage.removeItem("current");
+    localStorage.removeItem("currentTasks");
 }
 
 function addTask() {
-    var arrOfTasks = JSON.parse(localStorage.getItem("current"));
+    var arrOfTasks = JSON.parse(localStorage.getItem("currentTasks"));
     var jobTitle=$('#jobTitle').val();
     var jobTimed=document.getElementById('jobTimed').checked;
     var jobExpected=$('#jobExpected').val();
@@ -73,7 +73,7 @@ function addJob() {
         var jobTimed=document.getElementById('jobTimed').checked;
         var jobExpected=$('#jobExpected').val();
         var jobEmail=document.getElementById('jobEmail').checked;
-        var arrOfTasks = JSON.parse(window.localStorage.getItem("current"));
+        var arrOfTasks = JSON.parse(window.localStorage.getItem("currentTasks"));
         console.log(arrOfTasks);
         var job;
 

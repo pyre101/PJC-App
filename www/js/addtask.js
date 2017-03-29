@@ -7,14 +7,14 @@
 function Submit(){
     var arrOfTask;
     var sequenceNum = localStorage.getItem("sequence");
-    if(localStorage.getItem('current') == null)
+    if(localStorage.getItem('currentTasks') == null)
     {
         arrOfTask = [];
         sequenceNum = 1;
     }
     else
     {
-        arrOfTask = JSON.parse(localStorage.getItem('current'));
+        arrOfTask = JSON.parse(localStorage.getItem('currentTasks'));
     }
     if( !(document.getElementById("taskName").value == null &&
         document.getElementById("taskDesc").value == null &&
@@ -33,7 +33,7 @@ function Submit(){
 
         arrOfTask.push(task);
 
-        localStorage.setItem('current',JSON.stringify(arrOfTask));
+        localStorage.setItem('currentTasks',JSON.stringify(arrOfTask));
         location.href="addJob.html";
     }
     else

@@ -1,12 +1,12 @@
 function editTask(taskToEdit)
 {
-    var currentRoutine = JSON.parse(window.localStorage.getItem('currentRoutine'));
-
-    var jobList = JSON.parse(localStorage.getItem('jobList'));
-
-    console.log(currentRoutine.Tasks[taskToEdit].taskName);
-    localStorage.setItem("currentEditJob", JSON.stringify(currentRoutine.Tasks[taskToEdit]));
-    document.location.href = "editTask.html";
+	var currentRoutine = JSON.parse(window.localStorage.getItem('currentRoutine'));
+	
+	//var jobList = JSON.parse(localStorage.getItem('jobList'));
+	
+	console.log(currentRoutine.Tasks[taskToEdit].taskName); 
+	localStorage.setItem("currentEditJob", JSON.stringify(currentRoutine.Tasks[taskToEdit])); 
+	document.location.href = "editTask.html"; 
 }
 
 function deleteJob(){
@@ -40,8 +40,38 @@ jQuery(document).ready(function() {
         keepAliveTwo(loginToken);
     }, 500);
 
-    editJob();
+	loadJob();
+
+	//editJob();
 });
+
+function loadJob()
+{
+	var currentRoutine = JSON.parse(window.localStorage.getItem('currentRoutine'));
+	//var arrOfTasks = JSON.parse(window.localStorage.getItem("currentTasks"));
+	//console.log(arrOfTasks);
+	//var job;
+
+	if(currentRoutine != null){
+		console.log(currentRoutine.Tasks);
+
+		console.log("Attempted to populate fields");
+		console.log(currentRoutine);
+
+        document.getElementById("jobTitle").value = currentRoutine.routineTitle;
+        document.getElementById("jobTimed").checked = currentRoutine.isTimed;
+        document.getElementById("jobExpected").value = currentRoutine.expectedDuration;
+        document.getElementById("jobEmail").checked = currentRoutine.isNotifiable;
+        document.getElementById("listOfTasks").value = currentRoutine.Tasks;
+	}
+	else {
+		console.log("JOB NOT FOUND");
+	}
+}
+
+
+
+
 
 
 function addTask()
@@ -62,152 +92,49 @@ function addTask()
 
 //need to grab data when clicked on jobList to know which job.
 //ajax for localStorage
-function editJob()
-{
+function editJob() {
     var currentRoutine = JSON.parse(window.localStorage.getItem('currentRoutine'));
     console.log(currentRoutine);
+
+    // TODO: assign these values
+    var jobTitle;
+    var jobTimed;
+    var jobExpected;
+    var jobEmail;
+
     var loginToken = window.localStorage.getItem('token');
     var assignedUser = window.localStorage.getItem('user');
-    /*var listPlace = $('#RoutineDiv');
-    //breaks JSON into list
 
-    //console.log('Working');
-    //console.log(JSON.parse(localStorage.getItem('jobList'))); 
-    // Get a list of users under the logged in job coach
-    var jobList = JSON.parse(localStorage.getItem('jobList'));
-    //console.log(jobList); 
+    var editedRoutine = {
+        'creatorUserName': null, //to be added on backend
+        'assigneeUserName': localStorage.getItem("user"),
+        'routineTitle': jobTitle,
+        'isTimed': jobTimed,
+        'expectedDuration': jobExpected,
+        'isNotifiable': jobEmail,
+        'Tasks': [],
+        'Feedbacks': []
+    };
 
-    // Loop through list of users jobs and create buttons for each
-    for(var i = 0; i < jobList.length; i++)
-    {
+    var data = {token: loginToken, create: "m", model: JSON.stringify(editedRoutine)};   //use 'm' to modify and 'd' to delete
+    console.log(job);
+    $.ajax({
+        type: 'POST',
+        dataType: 'application/json',
+        data: data,
+        url: uri + "Routine",
+        success: function (data) {
+            console.log(data);
+            console.log("success");
 
-        //console.log(jobList[i].routineTitle + " " + currentRoutine);
-        if(jobList[i].routineTitle == currentRoutine)
-        {
-            currentRoutine = jobList[i];
+            localStorage.removeItem("job");
+            localStorage.removeItem("currentSequence");
+            window.location.href = "joblist.html";
+        },
+        error: function (data) {
+            console.log(data);
+            console.log("JOB WAS NOT ADDED");
         }
-    }
-    window.localStorage.setItem("currentRoutine", JSON.stringify(currentRoutine));*/
-    //console.log(currentRoutine); 
-    var toAppend = document.createElement('div');
-    toAppend.id = 'RoutineInfo';
-    toAppend.innerHTML = "<div style='align-self: center'>" +
-        "Title: <input type='text' id='routineTitle' value='"+currentRoutine.routineTitle +"' /><br/> " +
-        "Timed: <input type='checkbox' id='jobTimed' value='"+currentRoutine.isTimed +"' /> <br/>" +
-        "Expected Duration: <input type='time' id='expectedDuration' value='"+currentRoutine.expectedDuration+"' /> <br/>" +
-        "Email on Job Completion: <input type='checkbox' id='isNotifiable' value'"+ currentRoutine.isNotifiable +"' /> <br/>" +
-        "</div>" +
-        "<h1> Tasks </h1>";
-
-    //center this section(?)
-
-
-    listPlace.append(toAppend);
-    for(var i = 0; i < currentRoutine.Tasks.length; i++)
-    {
-        console.log(currentRoutine.Tasks[i]);
-        toAppend = document.createElement('div');
-        toAppend.id = 'Task' + i;
-        toAppend.innerHTML = '<div class="ui-block-solo"><a  id="task'+ i +'" class="ui-btn" onclick="editTask('+i+')"> Edit Task: '+ currentRoutine.Tasks[i].taskName+'</a></div>';
-        var listPlace = document.getElementById('RoutineInfo');
-        listPlace.append(toAppend);
-
-    }
-
-
-
-
-    /*
-     $.each(jobList, function (key, item) {
-
-     console.log(item.routineTitle +" " + routineName); 
-     if(item.routineTitle == routineName) {
-     console.log(item.routineTitle);
-
-     toAppend = document.createElement('div');
-     toAppend.innerHTML =
-     '<div>hello</div>'; 
-     /*
-     "<div class='ui-block-solo'>"+
-     "<label for='JobName'>Job Name: </label>"+
-     "<input type='text' name='JobName' id='JobName' placeholder='JobName' value=\""+item.routineTitle+"\">"+
-
-     "<label for='EstimatedTime'>Estimated Time:</label>"+
-     "<input type='time' name='EstimatedTime' id='EstimatedTime' placeholder='EstimatedTime' value=\""+item.expectedDuration+"\">"+
-
-     "<label for='NumberTasks'># of tasks: </label>"+
-     "<input type='text' name='NumberTasks' id='NumberTasks' placeholder='NumberTasks' value='0'>"+
-
-     "<label for='RoutineID'>RoutineID: </label>"+
-     "<input type='text' name='RoutineID' id='RoutineID' placeholder='RoutineID' value=\""+item.routineID+"\">"+
-
-     "<label for='CreatorUserName'>Creator UserName: </label>"+
-     "<input type='text' name='CreatorUserName' id='CreatorUserName' placeholder='CreatorUserName' value=\""+item.creatorUserName+"\">"+
-
-     "<label for='AssigneeUserName'>Assignee UserName: </label>"+
-     "<input type='text' name='AssigneeUserName' id='AssigneeUserName' placeholder='AssigneeUserName' value=\""+item.assigneeUserName+"\">"+
-
-     "<label for='isTimed'>Timed: </label>"+
-     "<input type='text' name='isTimed' id='isTimed' placeholder='isTimed' value=\""+item.isTimed+"\">"+
-
-     "<label for='updatedDate'>Updated Date: </label>"+
-     "<input type='text' name='updatedDate' id='updatedDate' placeholder='updatedDate' value=\""+item.updatedDate+"\">"+
-
-     "<label for='isDisabled'>Disabled Status: </label>"+
-     "<input type='text' name='isDisabled' id='isDisabled' placeholder='isDisabled' value=\""+item.isDisabled+"\">"+
-
-     "<label for='isNotifiable'>Notifiable: </label>"+
-     "<input type='text' name='isNotifiable' id='isNotifiable' placeholder='isNotifiable' value=\""+item.isNotifiable+"\">"+
-
-     "</div>";
-
-     listPlace.append(toAppend);
-
-     }
-     */
-
-
-
-    /*
-     $.getJSON('http://pjcdbrebuild2.gear.host/api/Routine',
-     {
-     token: loginToken,
-     username: assignedUser
-     },
-     function(data) // put data into text boxes    userinfo.js
-     {
-     console.log('Attempting to load data from GetRoutineListForUser:')
-     console.log(data);
-     });
-
-
-     //need to create text boxes filled with data
-
-     */
+    });
 }
 
-
-
-/*
- $('<div data-role='collapsible' class='individualTask' stepnumber='' + (i+1) + '' id='task' + i + ''>' +
- '<h3 id='taskName'>' + taskNames[i] + '</h3>' +
- '<a href='#verification' data-rel='popup' data-position-to='window' data-transition='pop' class='ui-btn finishTask'>Finish Task</a>' +
- '<table style='width:100%'>' +
- '<tr>' +
- '<td><b>Task Time</b></td>' +
- '<td id='taskTime' + i + ''>00:00:00</td>' +
- '</tr>' +
- '<tr>' +
- '<td><b>Estimated Time</b></td>' +
- '<td id='expectedDuration' + i + ''>' + expectedDurations[i] + '</td>' +
- '</tr>' +
- '</table>' +
- '<br/>' +
- '<div class='ui-grid-a ui-responsive'>' +
- '<div class='ui-block-a'><b>Description</b></div>' +
- '<div class='ui-block-b' id='description'><p>' + taskDescriptions[i] + '</p></div>' +
- '<div class='ui-block-a'></div>' +
- '</div>' +
- '<a href='#makeNote' data-rel='popup' data-position-to='window' data-transition='pop' class='ui-btn make-note'>Make Note</a>' +
- '</div>').appendTo($('#tasksList'));
- */
