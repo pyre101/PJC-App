@@ -18,8 +18,6 @@ jQuery(document).ready(function () {
     ).error(function() {
         console.log("ROUTINE LIST IS NOT SET");  
     });
-    
-
 
     
     function keepAlive(tempToken) {

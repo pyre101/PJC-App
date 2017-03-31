@@ -14,21 +14,26 @@ window.onload = function displayTasks()
             var information = taskList[i];
             console.log(information);
 
-            $('<div data-role="collapsible">' +
-                '<h4>' + information.name + '</h4>' +
-                '<div data-role="listview" class="ui-grid-a ui-responsive">' +
-                '<div>Description: ' + information.description + '</div>' +
-                '<div>Category: ' + information.category.categoryName + '</div>' +
-                '<div>Timed: ' + information.timed + '</div>' +
-                '<div>Duration: ' + information.duration + '</div>' +
-                '</div>' +
-                '</div>').appendTo(list);
-            $(list).collapsibleset('refresh');
+            var toAdd = document.createElement('ul');
+            toAdd.style.cssText = 'list-style:none';
+            toAdd.innerHTML = '<li>Title: '+ information.taskName +'</li>' +
+                '<li>Description: ' + information.taskDescription + '</li>' +
+                '<li>Category: ' + information.TaskCategory.categoryName + '</li>' +
+                '<li>Timed: ' + information.isTimed + '</li>' +
+                '<li>Duration: ' + information.expectedDuration + '</li>';
+            list.append(toAdd);
         }
     }
     else
     {
         console.log("tasks is empty");
+    }
+    var job = JSON.parse(localStorage.getItem("job"));
+    if(job != null){
+        document.getElementById("jobTitle").value = job.routineTitle;
+        document.getElementById("jobTimed").checked = job.isTimed;
+        document.getElementById("jobExpected").value = job.expectedDuration;
+        document.getElementById("jobEmail").checked = job.isNotifiable;
     }
 };
 
@@ -67,6 +72,7 @@ function addTask() {
 
 function addJob() {
     jQuery(document).ready(function () {
+        // TODO: update api url
         var uri = 'http://pjcdbrebuild2.gear.host/api/';
         var loginToken = window.localStorage.getItem("token");
         var jobTitle=$('#jobTitle').val();
@@ -98,7 +104,7 @@ function addJob() {
             keepAliveTwo(loginToken);
         }, 500);
 
-        var data = {token: loginToken, create: "c", model: JSON.stringify(job)};   //use 'm' to modify and 'd' to delete
+        var data = {token: loginToken, create: "c", model: JSON.stringify(job)};
         console.log(job);
         $.ajax({
             type: 'POST',
@@ -106,22 +112,30 @@ function addJob() {
             data: data,
             url: uri + "Routine",
             success: function (data) {
+                // TODO: make it do stuff?
                 console.log(data);
                 localStorage.removeItem("job");
-                localStorage.removeItem("current");
+                localStorage.removeItem("currentTasks");
                 localStorage.removeItem("sequence");
-                window.location.href = "joblist.html";
+
                 //window.localStorage.setItem("job", data);
             },
             error: function (data) {
                 console.log(data);
+                if(data.status = 201){
+                    console.log("JOB ADDED");
+                    resetTasks();
+                    location.href = "joblist.html";
+                }
                 console.log("JOB WAS NOT ADDED");
             }
         });
+
         /*$.post(uri+"Routine",{token: loginToken, create: "c", model: JSON.stringify(job)}, function (data) {
             console.log(data);
         })*/
     });
     //Uncomment when addJob is working correctly
-    resetTasks();
+    //window.location.href = "joblist.html";
+    //resetTasks();
 }
