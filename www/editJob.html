@@ -47,7 +47,7 @@
         <label for="jobEmail">Email on Job Completion</label>
         <input type="checkbox" name="jobEmail" id="jobEmail"/>
 
-        <h2>Tasks</h2>
+        <h2>Tasks</h2><div>(Tap to edit)</div>
         <div id="listOfTasks" data-role="collapsibleset"> </div>
 
         <Button onclick="resetTasks()"> Reset Tasks </Button>
@@ -78,7 +78,7 @@
 </div>
 
 
-    <div data-role="submission" class="ui-content">
+<div data-role="submission" class="ui-content">
     <!--        <button onclick="editJob()" > Run Function </button>  -->
     <input type="submit" value="Submit" onclick="editJob()">
     <div width="100%"><button type="button" onclick="addTask()">  Add Task </button> </div>
