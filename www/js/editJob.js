@@ -26,7 +26,7 @@ function deleteJob(){
             console.log(data);
             if(data.status == 200){
                 console.log("JOB DELETED");
-                location.href = "joblist.html";
+                location.href = "userlist.html";
             }else {
                 console.log("JOB WAS NOT DELETED");
             }
@@ -133,7 +133,7 @@ function editJob() {
             if(data.status == 201){
                 console.log("JOB ADDED");
                 localStorage.removeItem("currentRoutine");
-                location.href = "joblist.html";
+                location.href = "userlist.html";
             }else {
                 console.log("JOB WAS NOT ADDED");
             }
