@@ -47,26 +47,22 @@
         <label for="jobEmail">Email on Job Completion</label>
         <input type="checkbox" name="jobEmail" id="jobEmail"/>
 
-        <h2>Tasks</h2><div>(Tap to edit)</div>
+        <h2>Tasks</h2>
         <div id="listOfTasks" data-role="collapsibleset"> </div>
-
-        <Button onclick="resetTasks()"> Reset Tasks </Button>
 
         <div class="ui-grid-a ui-responsive">
             <div class="ui-block-solo">
-                <!--
                 <a onclick="addTask()" data-ajax="false" class="ui-btn ui-icon-plus ui-btn-icon-top">
                     Add Task
                 </a>
-                -->
             </div>
             <div class="ui-block-solo">
                 <a href="#" onclick="editJob()" data-ajax="false" class="ui-btn ui-icon-check ui-btn-icon-top">
-                    Submit Job
+                    Submit
                 </a>
             </div>
             <div class="ui-block-solo">
-                <a href="#" onclick="deleteJob()" data-ajax="false" class="ui-btn ui-icon-check ui-btn-icon-top">
+                <a href="#" onclick="deleteJob()" data-ajax="false" class="ui-btn ui-icon-delete ui-btn-icon-top">
                     Delete
                 </a>
             </div>
@@ -77,18 +73,10 @@
 
 </div>
 
-
-<div data-role="submission" class="ui-content">
-    <!--        <button onclick="editJob()" > Run Function </button>  -->
-    <input type="submit" value="Submit" onclick="editJob()">
-    <div width="100%"><button type="button" onclick="addTask()">  Add Task </button> </div>
-</div>
-
 <div data-role="footer" data-position="fixed">
     <div data-role="navbar">
         <ul>
             <li><a href="parentcoachsplash.html" data-ajax="false" data-icon="home">Home</a></li>
-            <li><a href="contact.html" data-ajax="false" data-icon="phone">Contact</a></li>
         </ul>
     </div>
 </div>

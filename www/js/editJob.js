@@ -1,3 +1,13 @@
+jQuery(document).ready(function() {
+    var loginToken = window.localStorage.getItem('token');
+    setTimeout(function () {
+        keepAliveTwo(loginToken);
+    }, 500);
+
+    loadJob();
+});
+
+
 function deleteJob(){
     var job = JSON.parse(localStorage.getItem('currentRoutine'));
     var token = localStorage.getItem('token');
@@ -24,59 +34,37 @@ function deleteJob(){
     });
 }
 
-function editTask(taskToEdit) //called by clicking on task
-{
-    var currentRoutine = JSON.parse(window.localStorage.getItem('currentRoutine'));
-
-    //var jobList = JSON.parse(localStorage.getItem('jobList'));
-
-    console.log(currentRoutine.Tasks[taskToEdit].taskName);
-    localStorage.setItem("currentEditJob", JSON.stringify(currentRoutine.Tasks[taskToEdit]));
-    localStorage.setItem("taskNum", taskToEdit);
-    document.location.href = "editTask.html";
-}
-
-
-jQuery(document).ready(function() {
-    var loginToken = window.localStorage.getItem('token');
-    setTimeout(function () {
-        keepAliveTwo(loginToken);
-    }, 500);
-
-    loadJob();
-
-    //editJob();
-});
 
 function loadJob()
 {
     var currentRoutine = JSON.parse(window.localStorage.getItem('currentRoutine'));
-    //var arrOfTasks = JSON.parse(window.localStorage.getItem("currentTasks"));
-    //console.log(arrOfTasks);
-    //var job;
 
     if(currentRoutine != null){
         console.log(currentRoutine.Tasks);
-
-        console.log("Attempted to populate fields");
-        console.log(currentRoutine);
 
         document.getElementById("jobTitle").value = currentRoutine.routineTitle;
         document.getElementById("jobTimed").checked = currentRoutine.isTimed;
         document.getElementById("jobExpected").value = currentRoutine.expectedDuration;
         document.getElementById("jobEmail").checked = currentRoutine.isNotifiable;
+
         var list = document.getElementById("listOfTasks");
         var taskList = currentRoutine.Tasks;
         for(var i = 0; i < taskList.length; i++){
-            var toAdd = document.createElement('ul');
-            toAdd.style.cssText = 'list-style:none';
-            toAdd.innerHTML = '<li>Title: '+ taskList[i].taskName +'</li>' +
-                '<li>Description: ' + taskList[i].taskDescription + '</li>' +
-                '<li>Category: ' + taskList[i].TaskCategory.categoryName + '</li>' +
-                '<li>Timed: ' + taskList[i].isTimed + '</li>' +
-                '<li>Duration: ' + taskList[i].expectedDuration + '</li>';
-            toAdd.setAttribute("onclick", "editTask("+i+")");//.onclick = editTask(i);
-            list.append(toAdd);
+            $(  '<div data-role="collapsible">' +
+                '<h4>' + taskList[i].taskName + '</h4>' +
+                '<div data-role="listview" class="ui-grid-a ui-responsive">' +
+                '<div>Description: ' + taskList[i].taskDescription + '</div>' +
+                '<div>Category: ' + taskList[i].TaskCategory.categoryName + '</div>' +
+                '<div>Timed: ' + taskList[i].isTimed + '</div>' +
+                '<div>Duration: ' + taskList[i].expectedDuration + '</div>' +
+                '<div class="ui-block-solo">' +
+                '<a onclick="editTask('+i+')" data-ajax="false" class="ui-btn ui-icon-edit ui-btn-icon-left">' +
+                'Edit Task' +
+                '</a></div>' +
+                '</div>' +
+                '</div>').appendTo(list);
+
+            $(list).collapsibleset('refresh');
         }
     }
     else {
@@ -87,7 +75,6 @@ function loadJob()
 
 function addTask()
 {
-    console.log('hi');
     var list = document.querySelector('#listOfTasks');
     var toAdd = document.createElement('div');
     toAdd.innerHTML = "Task Name: <input type='text' name='taskName' width='80%'/><br/>" +
@@ -98,7 +85,6 @@ function addTask()
     breakDiv.innerHTML = '<br/>';
     list.appendChild(breakDiv);
 }
-
 
 
 //need to grab data when clicked on jobList to know which job.
@@ -153,4 +139,16 @@ function editJob() {
             }
         }
     });
+}
+
+function editTask(taskToEdit) //called by clicking on task
+{
+    var currentRoutine = JSON.parse(window.localStorage.getItem('currentRoutine'));
+
+    //var jobList = JSON.parse(localStorage.getItem('jobList'));
+
+    console.log(currentRoutine.Tasks[taskToEdit].taskName);
+    localStorage.setItem("currentEditJob", JSON.stringify(currentRoutine.Tasks[taskToEdit]));
+    localStorage.setItem("taskNum", taskToEdit);
+    document.location.href = "editTask.html";
 }

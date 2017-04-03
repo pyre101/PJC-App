@@ -51,20 +51,10 @@
         <label for="jobEmail">Email on Job Completion</label>
         <input type="checkbox" name="jobEmail" id="jobEmail"/>
 
-        <script>
-            var job = localStorage.getItem("job");
-            if(job != null){
-                jQuery(document).ready(function () {
-                    $("#jobTitle").innerHTML = job.routineTitle;
-                    $("#jobTimed").checked = job.isTimed;
-                    $("#jobExpected").innerHTML = job.expectedDuration;
-                    $("#jobEmail").checked = job.isNotifiable;
-                })
-            }
-        </script>
+        <h2>Tasks</h2>
+        <div id="listOfTasks" data-role="collapsibleset"> </div>
 
-
-        <div id="listOfTasks"> </div>
+        <Button onclick="resetTasks()"> Reset Tasks </Button>
 
         <div class="ui-grid-a ui-responsive">
             <div class="ui-block-solo">
@@ -77,8 +67,6 @@
                     Submit Job
                 </a>
             </div>
-            <!--<Button onclick="displayTasks()"> Display Tasks </Button> -->
-            <Button onclick="resetTasks()"> Reset Tasks </Button>
         </div>
 
     </form>

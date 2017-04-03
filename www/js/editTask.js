@@ -11,28 +11,16 @@ jQuery(document).ready(function () {
 function fillBoxes()
 {
     var currentTask = JSON.parse(window.localStorage.getItem('currentEditJob'));
-    var routineName = JSON.parse(localStorage.getItem("currentRoutine")).routineTitle;
-    //var loginToken = window.localStorage.getItem('token');
-    //var assignedUser = window.localStorage.getItem('user');
-    //var boxPlace = $('#TaskDiv');
 
     console.log(currentTask);
-    var toAppend = document.createElement('div');
-    toAppend.id = 'RoutineInfo';
-    toAppend.innerHTML = "<h1>Editing "+routineName+": "+currentTask.taskName+"</h1>" +
-        "Name: <input type='text' id='taskName' value='"+currentTask.taskName +"' /><br/>" +
-        "Description: <input type='text' id='taskDesc' value='"+currentTask.taskDescription+"'><br/>" +
-        "Category: <select id='taskCat'>" + //TODO: Figure out a way to have the current task's category selected
-            "<option value='Custodial'>Custodial</option>" +
-            "<option value='Hosting'>Hosting</option>" +
-            "<option value='Maintenance'>Maintenance</option>" +
-            "<option value='Gardening'>Gardening</option>" +
-            "<option value='Help'>Help</option>" +
-        "</select><br/>" +
-        "Timed: <input type='checkbox' id='taskTimed' checked='"+currentTask.isTimed +"' /> <br/>" +
-        "Expected Duration: <input type='time' id='expectDuration' value='"+currentTask.expectedDuration +"' /> <br/>";
-    var list = document.getElementById("taskList");
-    list.append(toAppend);
+
+    // Fix populating the task category. You can see that the value is correctly changing
+    // because it is selected in the dropdown. Just need to get the UI to load it.
+    document.getElementById("taskName").value = currentTask.taskName;
+    document.getElementById("taskDesc").value = currentTask.taskDescription;
+    document.getElementById("taskCat").value = currentTask.TaskCategory.categoryName;
+    document.getElementById("taskTimed").checked = currentTask.isTimed;
+    document.getElementById("expectDuration").value = currentTask.expectedDuration;
 }
 
 function deleteTask() {
