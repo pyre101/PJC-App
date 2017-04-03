@@ -6,7 +6,6 @@ jQuery(document).ready(function() {
     }, 500);
 
     var listPlace = $("#jobList");
-    console.log("hello");
 
     displayAllUsersJobs();
 

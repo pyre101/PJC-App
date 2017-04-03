@@ -30,22 +30,30 @@ function displayTasks()
     var taskList = JSON.parse(localStorage.getItem("currentTasks"));
     if(taskList != null)
     {
+        $(list).empty();
+
         for(var i = 0; i < taskList.length; i++)
         {
             var task = taskList[i];
-            console.log(task);
+            //console.log(task);
 
-            $('<div data-role="collapsible">' +
-                '<h4>' + task.taskName + '</h4>' +
-                '<div data-role="listview" class="ui-grid-a ui-responsive">' +
-                '<div>Description: ' + task.taskDescription + '</div>' +
-                '<div>Category: ' + task.TaskCategory.categoryName + '</div>' +
-                '<div>Timed: ' + task.isTimed + '</div>' +
-                '<div>Duration: ' + task.expectedDuration + '</div>' +
-                '</div>' +
-                '</div>').appendTo(list);
+            if (task != null) {
+                $('<div data-role="collapsible">' +
+                    '<h4>' + task.taskName + '</h4>' +
+                    '<div data-role="listview" class="ui-grid-a ui-responsive">' +
+                    '<div>Description: ' + task.taskDescription + '</div>' +
+                    '<div>Category: ' + task.TaskCategory.categoryName + '</div>' +
+                    '<div>Timed: ' + task.isTimed + '</div>' +
+                    '<div>Duration: ' + task.expectedDuration + '</div>' +
+                    '<div class="ui-block-solo">' +
+                    '<a onclick="removeTask(' + i + ')" data-ajax="false" class="ui-btn ui-icon-delete ui-btn-icon-left">' +
+                    'Delete Task' +
+                    '</a></div>' +
+                    '</div>' +
+                    '</div>').appendTo(list);
 
-            $(list).collapsibleset('refresh');
+                $(list).collapsibleset('refresh');
+            }
         }
     }
     else
@@ -59,7 +67,18 @@ function displayTasks()
         document.getElementById("jobExpected").value = job.expectedDuration;
         document.getElementById("jobEmail").checked = job.isNotifiable;
     }
-};
+}
+
+function removeTask(index)
+{
+    var taskList = JSON.parse(localStorage.getItem("currentTasks"));
+
+    taskList.splice(index,1);//removes the task from the tasks array
+    localStorage.setItem("currentTasks", JSON.stringify(taskList));
+    //console.log(taskList);
+
+    displayTasks();
+}
 
 function resetTasks()
 {
