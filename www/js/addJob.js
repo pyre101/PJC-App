@@ -133,7 +133,7 @@ function addJob()
             if(data.status = 201){
                 console.log("JOB ADDED");
                 resetTasks();
-                location.href = "joblist.html";
+                location.href = "userlist.html";
             }
             else {
                 console.log("JOB WAS NOT ADDED");
