@@ -85,7 +85,7 @@ function addTask()
         };
 
         localStorage.setItem("job", JSON.stringify(job));
-        window.location.href = "addTask.html";
+        window.location.href = "addtask.html";
 }
 
 function addJob()
