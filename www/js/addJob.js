@@ -38,13 +38,18 @@ function displayTasks()
             //console.log(task);
 
             if (task != null) {
+				var expectedDuration = task.expectedDuration
+				//var time = expectedDuration.split(':');
+				//var hours = parseInt(time[0]); 
+				//hours = hours - 1; 
+				//var expectedDuration = hours.toString() + ":" + time[1]; 
                 $('<div data-role="collapsible">' +
                     '<h4>' + task.taskName + '</h4>' +
                     '<div data-role="listview" class="ui-grid-a ui-responsive">' +
                     '<div>Description: ' + task.taskDescription + '</div>' +
                     '<div>Category: ' + task.TaskCategory.categoryName + '</div>' +
                     '<div>Timed: ' + task.isTimed + '</div>' +
-                    '<div>Duration: ' + task.expectedDuration + '</div>' +
+                    '<div>Duration: ' + expectedDuration + '</div>' +
                     '<div class="ui-block-solo">' +
                     '<a onclick="removeTask(' + i + ')" data-ajax="false" class="ui-btn ui-icon-delete ui-btn-icon-left">' +
                     'Delete Task' +
@@ -90,6 +95,7 @@ function addTask()
         var jobTitle = $('#jobTitle').val();
         var jobTimed = document.getElementById('jobTimed').checked;
         var jobExpected = $('#jobExpected').val();
+		
         var jobEmail = document.getElementById('jobEmail').checked;
 
         var job = {
@@ -113,6 +119,10 @@ function addJob()
     var jobTitle=$('#jobTitle').val();
     var jobTimed=document.getElementById('jobTimed').checked;
     var jobExpected=$('#jobExpected').val();
+	
+	
+		
+	
     var jobEmail=document.getElementById('jobEmail').checked;
     var arrOfTasks = JSON.parse(window.localStorage.getItem("currentTasks"));
     console.log(arrOfTasks);

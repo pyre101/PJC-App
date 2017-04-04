@@ -84,12 +84,15 @@ function Submit(){
         //document.getElementById("taskTimed").value == null && #will never be null
         document.getElementById("taskExpected").value == null))
     {
+		var jobExpected= document.getElementById("taskExpected").value;
+		
+		
         var task = {"sequenceNo": sequenceNum,
             "taskName": document.getElementById("taskName").value,
             "taskDescription": document.getElementById("taskDesc").value,
             "TaskCategory": {"categoryName":document.getElementById("taskCat").value},
             "isTimed": document.getElementById("taskTimed").checked,
-            "expectedDuration": document.getElementById("taskExpected").value
+            "expectedDuration": jobExpected
         };
         sequenceNum++;
         localStorage.setItem("sequence", sequenceNum);

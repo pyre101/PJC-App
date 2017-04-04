@@ -41,7 +41,7 @@ function loadJob()
 
     if(currentRoutine != null){
         console.log(currentRoutine.Tasks);
-
+		
         document.getElementById("jobTitle").value = currentRoutine.routineTitle;
         document.getElementById("jobTimed").checked = currentRoutine.isTimed;
         document.getElementById("jobExpected").value = currentRoutine.expectedDuration;
