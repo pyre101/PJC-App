@@ -9,7 +9,7 @@ jQuery(document).ready(function() {
 
     function displayAllUsersForCoach() {
         //Remove routines and tasks that are being created or edited
-        localStorage.removeItem("current");
+        localStorage.removeItem("currentTasks");
         localStorage.removeItem("job");
         localStorage.removeItem("sequence");
 
