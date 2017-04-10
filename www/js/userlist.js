@@ -47,7 +47,6 @@ function getRoutineList(username) {
             username: username
         },
         function (data) {
-            console.log(JSON.stringify(data));
             localStorage.setItem('jobList', JSON.stringify(data));
             location.href = "joblist.html";
         }

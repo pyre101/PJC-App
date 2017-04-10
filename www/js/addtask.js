@@ -99,10 +99,15 @@ function Submit(){
 
         arrOfTask.push(task);
 
-        //console.log(task);
+        var currentRoutine = JSON.parse(window.localStorage.getItem('currentRoutine'));
+        if (currentRoutine != null)
+        {
+            currentRoutine.Tasks = arrOfTask;
+            localStorage.setItem('currentRoutine',JSON.stringify(currentRoutine));
+        }
+
         localStorage.setItem('currentTasks',JSON.stringify(arrOfTask));
-        //console.log(JSON.parse(localStorage.getItem('currentTasks')));
-        location.href="addJob.html";
+        window.history.back();
     }
     else
     {

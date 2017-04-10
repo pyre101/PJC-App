@@ -75,15 +75,13 @@ function loadJob()
 
 function addTask()
 {
-    var list = document.querySelector('#listOfTasks');
-    var toAdd = document.createElement('div');
-    toAdd.innerHTML = "Task Name: <input type='text' name='taskName' width='80%'/><br/>" +
-        "Description: <input type='text' name='description' width='80%'/><br/>" +
-        "Expected Duration:<input type='text' name='expectedDurationTask1' width='80%'/>";
-    list.appendChild(toAdd);
-    var breakDiv;
-    breakDiv.innerHTML = '<br/>';
-    list.appendChild(breakDiv);
+    var currentRoutine = JSON.parse(window.localStorage.getItem('currentRoutine'));
+    var arrOfTask = currentRoutine.Tasks;
+    var sequenceNum = arrOfTask.length + 1;
+
+    localStorage.setItem("sequence", sequenceNum);
+    localStorage.setItem('currentTasks',JSON.stringify(arrOfTask));
+    window.location.href = "addtask.html";
 }
 
 
