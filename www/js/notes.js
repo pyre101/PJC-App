@@ -31,7 +31,7 @@ $(document).on("pagecreate", function(){
                 url: uri + "Note?token=" + loginToken,
                 success: function(data){
                     document.getElementById("noteForm").reset();
-                    window.location.href = "splash.html";            
+                    window.location.href = "splash.html";
                 },
                 error: function(){
                     console.log("NOTE DID NOT UPLOAD");
