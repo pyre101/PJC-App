@@ -3,22 +3,17 @@ jQuery(document).ready(function() {
     var token = window.localStorage.getItem("token");
     var stToken = window.localStorage.getItem("token").toString();
     var num = stToken.search(",");
-    var role = stToken.substr(num+1);
+    var role = stToken.substr(num + 1);
     var model = {};
-    var backButton = document.getElementById("BackButton");
 
 
 
-    if(role == "Job Coach" || role == "Parent" || role == "Administrator")
+    if (role == "Job Coach" || role == "Parent" || role == "Administrator")
     {
-        backButton.href = 'ParentCoachSplash.html';
         document.getElementById("footer").hidden = true;
         document.getElementById("coachFooter").hidden = false;
     }
-    else
-    {
-        backButton.href = 'splash.html';
-    }
+
 
     jQuery('.change-password-save').on('click', 'a', function() {
         model = {
@@ -58,3 +53,7 @@ jQuery(document).ready(function() {
         keepAliveTwo(token);    
     }, 500);
 });
+
+function goBack() {
+    window.history.back();
+}
