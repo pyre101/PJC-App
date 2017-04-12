@@ -8,16 +8,16 @@ jQuery(document).ready(function() {
     var backButton = document.getElementById("BackButton");
 
 
+
     if(role == "Job Coach" || role == "Parent" || role == "Administrator")
     {
         backButton.href = 'ParentCoachSplash.html';
-
-        
+        document.getElementById("footer").hidden = true;
+        document.getElementById("coachFooter").hidden = false;
     }
     else
     {
         backButton.href = 'splash.html';
-
     }
 
     jQuery('.change-password-save').on('click', 'a', function() {
