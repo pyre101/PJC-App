@@ -65,6 +65,41 @@ $(document).on("pagecreate", function(){
         keepAliveTwo(loginToken);
     }, 500);
 });*/
+jQuery(document).ready(function () {
+ displayFeedback(); 
+});
+
+ function displayFeedback(){
+	
+	var addToDiv = document.getElementById('feedBacks');
+	var arrOfFeedBack = JSON.parse(localStorage.getItem('arrOfFeedBack')); 
+	for(var i = 0; i < arrOfFeedBack.length; i++)
+	{
+		var FeedBack = arrOfFeedBack[i];
+		
+		if(FeedBack != null)
+		{
+			console.log(FeedBack); 
+			var toAdd = document.createElement('div'); 
+		    toAdd.innerHTML = `Feedback Name: `+ FeedBack.feedName + `</br>`; 
+			addToDiv.append(toAdd); 
+		}
+ 	}
+}
+function addFeedback(){
+	//localStorage.removeItem('arrOfFeedBack'); 
+	if(localStorage.getItem('arrOfFeedBack') == null)
+	{
+		arrOfFeedBack = [];
+		localStorage.setItem('arrOfFeedBack', JSON.stringify(arrOfFeedBack)); 
+	}
+
+	var currentTask = document.getElementById("taskName").value; 
+	console.log(currentTask); 
+	localStorage.setItem("feedbackParams",JSON.stringify(currentTask)); 
+	window.location.href = 'addFeedback.html';
+}
+
 
 function Submit(){
     var arrOfTask;
@@ -92,7 +127,8 @@ function Submit(){
             "taskDescription": document.getElementById("taskDesc").value,
             "TaskCategory": {"categoryName":document.getElementById("taskCat").value},
             "isTimed": document.getElementById("taskTimed").checked,
-            "expectedDuration": jobExpected
+            "expectedDuration": jobExpected,
+			"arrOfFeedBack" : localStorage.getItem('arrOfFeedBack') 
         };
         sequenceNum++;
         localStorage.setItem("sequence", sequenceNum);
@@ -107,6 +143,7 @@ function Submit(){
         }
 
         localStorage.setItem('currentTasks',JSON.stringify(arrOfTask));
+		localStorage.removeItem('arrOfFeedBack'); 
         window.history.back();
     }
     else

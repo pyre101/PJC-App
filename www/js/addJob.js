@@ -39,10 +39,7 @@ function displayTasks()
 
             if (task != null) {
 				var expectedDuration = task.expectedDuration
-				//var time = expectedDuration.split(':');
-				//var hours = parseInt(time[0]); 
-				//hours = hours - 1; 
-				//var expectedDuration = hours.toString() + ":" + time[1]; 
+				
                 $('<div data-role="collapsible">' +
                     '<h4>' + task.taskName + '</h4>' +
                     '<div data-role="listview" class="ui-grid-a ui-responsive">' +
