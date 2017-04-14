@@ -38,7 +38,7 @@ function displayTasks()
             //console.log(task);
 
             if (task != null) {
-				var expectedDuration = task.expectedDuration
+				var expectedDuration = task.expectedDuration;
 				
                 $('<div data-role="collapsible">' +
                     '<h4>' + task.taskName + '</h4>' +

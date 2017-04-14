@@ -7,6 +7,7 @@ jQuery(document).ready(function() {
 
     var listPlace = $("#jobList");
 
+    removeLocalVariables();
     displayAllUsersJobs();
 
     function displayAllUsersJobs() {
@@ -15,8 +16,8 @@ jQuery(document).ready(function() {
 
         // Loop through list of users jobs and create buttons for each
         $.each(jobList, function (key, item) {
-            var temp = JSON.stringify(item);
-            $("<div class='ui-block-solo'><a onclick='editJob(\""+key+"\")'data-ajax='false' " +
+            //var temp = JSON.stringify(item);
+            $("<div class='ui-block-solo'><a onclick='editJob(\""+key+"\")' data-ajax='false' " +
                 "class='ui-btn'>" + item.routineTitle +
                 "</a></div>").appendTo(listPlace);
 
@@ -37,6 +38,17 @@ function editJob(routineKey)
     console.log(routine);
     localStorage.setItem("currentRoutine", JSON.stringify(routine));
     document.location.href = "editJob.html";
+}
+
+function removeLocalVariables() {
+    localStorage.removeItem("currentRoutine");
+    localStorage.removeItem("job");
+    localStorage.removeItem("currentSequence");
+    localStorage.removeItem("currentEditJob");
+    localStorage.removeItem("currentRoutine");
+    localStorage.removeItem("taskNum");
+    localStorage.removeItem("currentTasks");
+    localStorage.removeItem("arrayOfFeedback");
 }
 
 /*

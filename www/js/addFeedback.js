@@ -5,15 +5,15 @@ function back()
 
 function addFeedback()
 {
-	
+	var media = document.getElementById('feedMedia').value;
+	var feedType = document.getElementById('feedType').value;
 	
 	var feedBack = {
-		'feedName' : document.getElementById('feedName').value,
-		'feedMessage' : document.getElementById('feedMessage').value,
-		'feedMedia' : document.getElementById('feedMedia').value,
-		'feedType' : document.getElementById('feedType').value
-		
-	}
+		"feedbackTitle" : document.getElementById('feedName').value,
+		'feedbackMessage' : document.getElementById('feedMessage').value,
+		'MediaType' : {'mediaTypeName' : media},
+		'FeedbackType' : {'feedbackTypeName': feedType}
+	};
 	
 	
 	var arrOfFeedBack = JSON.parse(localStorage.getItem('arrOfFeedBack'));

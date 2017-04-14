@@ -81,7 +81,7 @@ jQuery(document).ready(function () {
 		{
 			console.log(FeedBack); 
 			var toAdd = document.createElement('div'); 
-		    toAdd.innerHTML = `Feedback Name: `+ FeedBack.feedName + `</br>`; 
+		    toAdd.innerHTML = 'Feedback Name: '+ FeedBack.feedbackTitle + '</br>';
 			addToDiv.append(toAdd); 
 		}
  	}
