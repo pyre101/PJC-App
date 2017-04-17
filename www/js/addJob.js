@@ -35,7 +35,6 @@ function displayTasks()
         for(var i = 0; i < taskList.length; i++)
         {
             var task = taskList[i];
-            //console.log(task);
 
             if (task != null) {
 				var expectedDuration = task.expectedDuration;
@@ -60,7 +59,7 @@ function displayTasks()
     }
     else
     {
-        console.log("tasks is empty");
+        console.log("tasks are empty");
     }
     var job = JSON.parse(localStorage.getItem("job"));
     if(job != null){
@@ -77,7 +76,6 @@ function removeTask(index)
 
     taskList.splice(index,1);//removes the task from the tasks array
     localStorage.setItem("currentTasks", JSON.stringify(taskList));
-    //console.log(taskList);
 
     displayTasks();
 }
@@ -116,13 +114,9 @@ function addJob()
     var jobTitle=$('#jobTitle').val();
     var jobTimed=document.getElementById('jobTimed').checked;
     var jobExpected=$('#jobExpected').val();
-	
-	
-		
-	
     var jobEmail=document.getElementById('jobEmail').checked;
     var arrOfTasks = JSON.parse(window.localStorage.getItem("currentTasks"));
-    console.log(arrOfTasks);
+    //console.log(arrOfTasks);
     var job;
 
     if(window.localStorage.getItem("job") == null){
@@ -142,14 +136,14 @@ function addJob()
     }
 
     var data = {token: loginToken, create: "c", model: JSON.stringify(job)};
-    console.log(job);
+    //console.log(job);
     $.ajax({
         type: 'POST',
         dataType: 'application/json',
         data: data,
         url: uri + "Routine",
         success: function (data) {
-            console.log(data);
+            //console.log(data);
             localStorage.removeItem("job");
             localStorage.removeItem("currentTasks");
             localStorage.removeItem("sequence");

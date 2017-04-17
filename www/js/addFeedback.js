@@ -21,8 +21,8 @@ function addFeedback()
 	{
 		arrOfFeedBack = [arrOfFeedBack];
 	}
-	console.log(typeof(arrOfFeedBack));
-	console.log(arrOfFeedBack); 
+	//console.log(typeof(arrOfFeedBack));
+	//console.log(arrOfFeedBack);
 	
 	
 	arrOfFeedBack.push(feedBack);

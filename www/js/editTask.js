@@ -12,7 +12,7 @@ function fillBoxes()
 {
     var currentTask = JSON.parse(window.localStorage.getItem('currentEditJob'));
 
-    console.log(currentTask);
+    //console.log(currentTask);
 
     // Fix populating the task category. You can see that the value is correctly changing
     // because it is selected in the dropdown. Just need to get the UI to load it.
@@ -59,16 +59,16 @@ function editTask() {
     var routine = JSON.parse(localStorage.getItem("currentRoutine"));//get routine we are working on
     routine.Tasks[localStorage.getItem("taskNum")] = currentTask;//replace task
     localStorage.setItem("currentRoutine", JSON.stringify(routine));//set routine back
-    console.log(routine);
+    //console.log(routine);
     location.href = "editJob.html"
 }
 
 function editFeedback(feedbackToEdit) {
-    console.log(feedbackToEdit);
+    //console.log(feedbackToEdit);
     var currentTask = JSON.parse(window.localStorage.getItem('currentEditJob'));
-    console.log(currentTask.Feedbacks);
+    //console.log(currentTask.Feedbacks);
     var currentFeedback = currentTask.Feedbacks[feedbackToEdit];
-    console.log(currentFeedback);
+    //console.log(currentFeedback);
 
     localStorage.setItem("currentFeedback", JSON.stringify(currentFeedback));
     localStorage.setItem("feedNum", feedbackToEdit);

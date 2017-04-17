@@ -3,68 +3,7 @@
 // ************************************
 // *  Copied structure from notes.js  *
 // ************************************
-/*
-jQuery(document).ready(function () {
 
-});
-
-$(document).on("pagecreate", function(){
-    var uri = 'http://pjcdbrebuild2.gear.host/api/';
-    var loginToken = window.localStorage.getItem("token");
-    Submit();
-    $("#save").click(function(){
-        var taskName = document.getElementById("taskName").value;
-        var taskDesc = document.getElementById("taskDesc").value;
-        var taskCat = document.getElementById("taskCat").value;
-        var taskTimed = document.getElementById("taskTimed").value;
-        var taskExpected = document.getElementById("taskExpected").value;
-
-        if(taskName == ""){
-            $("#emptyTask #message")[0].innerText = "*** TODO: addtask.js ***";
-            $("#emptyTask").popup("open");
-        } else if(taskDesc == ""){
-            $("#emptyTask #message")[0].innerHTML = "*** TODO: addtask.js ***";
-            $("#emptyTask").popup("open");
-        }
-
-        if (taskName != "" && taskDesc !== "") {
-            console.log(uri);
-            console.log(loginToken);
-            var job = window.localStorage.getItem("job");
-            var userTask = {
-                'Title':taskName,
-                'Description':taskDesc,
-                'Category':taskCat,
-                'Timed':taskTimed,
-                'Expected':taskExpected
-            };
-            job = job + userTask;
-            window.localStorage.setItem("job", job);
-            $.ajax({
-                type: 'POST',
-                dataType: 'json',
-                data: userTask,
-                url: uri + "Task?token=" + loginToken,
-                success: function(data){
-                    document.getElementById("taskForm").reset();
-                    window.location.href = "addJob.html";
-                },
-                error: function(){
-                    console.log("TASK DID NOT UPLOAD");
-                }
-            });
-        }
-
-    });
-
-    $("#cancel").click(function(){
-        document.getElementById("taskForm").reset();
-        location.href="addJob.html";
-    });
-    setTimeout(function() {
-        keepAliveTwo(loginToken);
-    }, 500);
-});*/
 jQuery(document).ready(function () {
  displayFeedback(); 
 });
@@ -79,7 +18,7 @@ jQuery(document).ready(function () {
 		
 		if(FeedBack != null)
 		{
-			console.log(FeedBack); 
+			//console.log(FeedBack);
 			var toAdd = document.createElement('div'); 
 		    toAdd.innerHTML = 'Feedback Name: '+ FeedBack.feedbackTitle + '</br>';
 			addToDiv.append(toAdd); 
@@ -95,7 +34,7 @@ function addFeedback(){
 	}
 
 	var currentTask = document.getElementById("taskName").value; 
-	console.log(currentTask); 
+	//console.log(currentTask);
 	localStorage.setItem("feedbackParams",JSON.stringify(currentTask)); 
 	window.location.href = 'addFeedback.html';
 }
@@ -120,7 +59,6 @@ function Submit(){
         document.getElementById("taskExpected").value == null))
     {
 		var jobExpected= document.getElementById("taskExpected").value;
-		
 		
         var task = {"sequenceNo": sequenceNum,
             "taskName": document.getElementById("taskName").value,

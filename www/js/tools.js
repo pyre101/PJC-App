@@ -11,7 +11,7 @@ jQuery(document).ready(function () {
         var role = token.substr(num+1);
         var a = document.getElementById('back');
         var b = document.getElementById('home');
-        console.log(role);
+        //console.log(role);
         if(role == "Job Coach" || role == "Parent" || role == "Administrator"){
             a.href = 'ParentCoachSplash.html';
             b.href = 'ParentCoachSplash.html';

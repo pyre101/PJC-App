@@ -11,7 +11,7 @@ jQuery(document).ready(function() {
 function deleteJob(){
     var job = JSON.parse(localStorage.getItem('currentRoutine'));
     var token = localStorage.getItem('token');
-    console.log(job);
+    //console.log(job);
     var uri = 'http://pjcdbrebuild2.gear.host/api/';
     if(job == null) return;
     jQuery.ajax({
@@ -23,7 +23,7 @@ function deleteJob(){
             //window.localStorage.setItem("job", data);
         },
         error: function (data) {
-            console.log(data);
+            //console.log(data);
             if(data.status == 200){
                 console.log("JOB DELETED");
                 location.href = "userlist.html";
@@ -40,7 +40,7 @@ function loadJob()
     var currentRoutine = JSON.parse(window.localStorage.getItem('currentRoutine'));
 
     if(currentRoutine != null){
-        console.log(currentRoutine.Tasks);
+        //console.log(currentRoutine.Tasks);
 		
         document.getElementById("jobTitle").value = currentRoutine.routineTitle;
         document.getElementById("jobTimed").checked = currentRoutine.isTimed;
@@ -90,7 +90,7 @@ function addTask()
 function editJob() {
     var currentRoutine = JSON.parse(window.localStorage.getItem('currentRoutine'));
     var uri = 'http://pjcdbrebuild2.gear.host/api/';
-    console.log(currentRoutine);
+    //console.log(currentRoutine);
 
     var jobTitle = document.getElementById("jobTitle").value;
     var jobTimed = document.getElementById("jobTimed").checked;
@@ -119,8 +119,8 @@ function editJob() {
         data: data,
         url: uri + "Routine",
         success: function (data) {
-            console.log(data);
-            console.log("success");
+            //console.log(data);
+            console.log("job updated");
 
             localStorage.removeItem("job");
             localStorage.removeItem("currentSequence");
@@ -145,7 +145,7 @@ function editTask(taskToEdit) //called by clicking on task
 
     //var jobList = JSON.parse(localStorage.getItem('jobList'));
 
-    console.log(currentRoutine.Tasks[taskToEdit].taskName);
+    //console.log(currentRoutine.Tasks[taskToEdit].taskName);
     localStorage.setItem("currentEditJob", JSON.stringify(currentRoutine.Tasks[taskToEdit]));
     localStorage.setItem("taskNum", taskToEdit);
     document.location.href = "editTask.html";

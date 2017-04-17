@@ -19,8 +19,8 @@ $(document).on("pagecreate", function(){
 		}
         
         if (name != "" && note !== "") {
-            console.log(uri);
-            console.log(loginToken);
+            //console.log(uri);
+            //console.log(loginToken);
             var userNote = {
                 'noteTitle':name,
                 'noteMessage':note};

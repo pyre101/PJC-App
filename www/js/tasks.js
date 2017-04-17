@@ -17,9 +17,10 @@ jQuery(document).ready(function() {
     var completedTasks = 0;
     var reminderArray = [];
     document.getElementById("routineName").innerHTML = jobTitle;
+
     $.each(routineList, function (key, item) {
         if (item.routineTitle === jobTitle) {
-            console.log(item);
+            //console.log(item);
             totalTasks = item.Tasks.length;
             for (var i = 0; i < totalTasks; i++) {
                 taskNames[i] = item.Tasks[i].taskName;

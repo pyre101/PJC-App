@@ -20,43 +20,6 @@ jQuery(document).ready(function () {
         console.log("USER LIST IS NOT SET");
     });
 
-    //None of this is necessary:
-    /*$.getJSON(uri + "Routine",
-        {token: loginToken},
-        function (data) {
-            localStorage.setItem('routineList', JSON.stringify(data));
-        }
-    ).error(function() {
-        console.log("ROUTINE LIST IS NOT SET");
-    });
-
-    setTimeout(function() {
-        keepAliveTwo(loginToken);
-    }, 500);
-
-
-    // TODO: use the correct API call, I just guessed (pseudo-code)
-    $.getJSON(uri + "Users",
-        {token: loginToken},
-        function (data) {
-            localStorage.setItem('userList', JSON.stringify(data));
-        }
-    ).error(function() {
-        console.log("USER LIST IS NOT SET");
-    });
-
-
-    // TODO: use the correct API call, I just guessed (pseudo-code)
-    $.getJSON(uri + "Jobs",
-        {token: loginToken},
-        function (data) {
-            localStorage.setItem('jobList', JSON.stringify(data));
-        }
-    ).error(function() {
-        console.log("JOB LIST IS NOT SET");
-    });*/
-
-
     function keepAlive(tempToken) {
         var keepAliveUri = 'http://pjcdbrebuild2.gear.host/api/Login';
         var token = tempToken;

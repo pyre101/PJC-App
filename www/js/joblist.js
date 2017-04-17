@@ -23,7 +23,6 @@ jQuery(document).ready(function() {
 
             listPlace.collapsibleset('refresh');
         });
-        //TODO: Create more of a visual difference between list and add buttons
     $("<div class='ui-block-solo'><a href='addJob.html' data-ajax='false'" +
         " class='ui-btn ui-icon-plus ui-btn-icon-top' style='background-color: #1d873b'>Add Job</a></div>").appendTo(listPlace);
 
@@ -33,9 +32,9 @@ jQuery(document).ready(function() {
 
 function editJob(routineKey)
 {
-    console.log(routineKey);
+    //console.log(routineKey);
     var routine = JSON.parse(localStorage.getItem('jobList'))[routineKey];
-    console.log(routine);
+    //console.log(routine);
     localStorage.setItem("currentRoutine", JSON.stringify(routine));
     document.location.href = "editJob.html";
 }
