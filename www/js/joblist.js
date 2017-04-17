@@ -47,7 +47,7 @@ function removeLocalVariables() {
     localStorage.removeItem("currentRoutine");
     localStorage.removeItem("taskNum");
     localStorage.removeItem("currentTasks");
-    localStorage.removeItem("arrayOfFeedback");
+    localStorage.removeItem("arrayOfFeedBack");
 }
 
 /*

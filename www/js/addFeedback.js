@@ -17,6 +17,9 @@ function addFeedback()
 	
 	
 	var arrOfFeedBack = JSON.parse(localStorage.getItem('arrOfFeedBack'));
+	if (arrOfFeedBack == null){
+		arrOfFeedBack = [];
+	}
 	if (typeof(arrOfFeedBack)== 'string') 
 	{
 		arrOfFeedBack = [arrOfFeedBack];
@@ -26,8 +29,7 @@ function addFeedback()
 	
 	
 	arrOfFeedBack.push(feedBack);
-	localStorage.setItem('arrOfFeedBack', JSON.stringify(arrOfFeedBack)); 
-	window.history.back(); 
-
+	localStorage.setItem('arrOfFeedBack', JSON.stringify(arrOfFeedBack));
+	window.history.back();
 	
 }

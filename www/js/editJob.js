@@ -90,7 +90,7 @@ function addTask()
 function editJob() {
     var currentRoutine = JSON.parse(window.localStorage.getItem('currentRoutine'));
     var uri = 'http://pjcdbrebuild2.gear.host/api/';
-    //console.log(currentRoutine);
+    console.log(currentRoutine);
 
     var jobTitle = document.getElementById("jobTitle").value;
     var jobTimed = document.getElementById("jobTimed").checked;

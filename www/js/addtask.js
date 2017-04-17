@@ -59,7 +59,7 @@ function Submit(){
         document.getElementById("taskExpected").value == null))
     {
 		var jobExpected= document.getElementById("taskExpected").value;
-		
+
         var task = {"sequenceNo": sequenceNum,
             "taskName": document.getElementById("taskName").value,
             "taskDescription": document.getElementById("taskDesc").value,

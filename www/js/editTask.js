@@ -23,7 +23,11 @@ function fillBoxes()
     document.getElementById("expectDuration").value = currentTask.expectedDuration;
 
     var list = document.getElementById("listOfFeedbacks");
+    if(localStorage.getItem("arrOfFeedBack") != null) {
+        currentTask.Feedbacks = JSON.parse(localStorage.getItem("arrOfFeedBack"));
+    }
     var feedList = currentTask.Feedbacks;
+    console.log(feedList);
     for(var i = 0; i < feedList.length; i++){
         $(  '<div data-role="collapsible">' +
             '<h4>' + feedList[i].feedbackTitle + '</h4>' +
