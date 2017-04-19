@@ -4,7 +4,7 @@ jQuery(document).ready(function () {
     document.getElementById("userName").value = localStorage.getItem('name');
     
     var loginToken = window.localStorage.getItem("token");
-    var uri = 'http://pjcdbrebuild2.gear.host/api/';
+    var uri = 'http://'+connection+'/api/';
 
     setTimeout(function() {
             keepAliveTwo(loginToken);
@@ -21,7 +21,7 @@ jQuery(document).ready(function () {
 
     
     function keepAlive(tempToken) {
-        var keepAliveUri = 'http://pjcdbrebuild2.gear.host/api/Login';
+        var keepAliveUri = 'http://'+connection+'/api/Login';
         //var token = tempToken;
         $.getJSON(keepAliveUri,
             {token: tempToken},

@@ -1,5 +1,5 @@
 jQuery(document).ready(function () {
-	var uri = 'http://pjcdbrebuild2.gear.host/api/';
+	var uri = 'http://'+connection+'/api/';
     var loginToken = window.localStorage.getItem("token");
 	$.getJSON(uri + "JobCoach",
 		{token: loginToken},
