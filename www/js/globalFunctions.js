@@ -1,4 +1,4 @@
-var connection = "localhost:43393";
+var connection = "pjcdbrebuild2.gear.host";
 
 jQuery(document).ready(function() {
     window.logout = function() {

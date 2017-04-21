@@ -68,6 +68,8 @@ function Submit(){
         document.getElementById("taskExpected").value == null))
     {
 		var jobExpected= document.getElementById("taskExpected").value;
+		var arrOfFeedback = JSON.parse(localStorage.getItem('arrOfFeedBack'));
+		//console.log(arrOfFeedback);
 
         var task = {"sequenceNo": sequenceNum,
             "taskName": document.getElementById("taskName").value,
@@ -75,7 +77,7 @@ function Submit(){
             "TaskCategory": {"categoryName":document.getElementById("taskCat").value},
             "isTimed": document.getElementById("taskTimed").checked,
             "expectedDuration": jobExpected,
-			"arrOfFeedBack" : JSON.parse(localStorage.getItem('arrOfFeedBack'))
+			"Feedbacks" : arrOfFeedback
         };
         sequenceNum++;
         localStorage.setItem("sequence", sequenceNum);
