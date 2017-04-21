@@ -1,3 +1,5 @@
+var connection = "localhost:43393";
+
 jQuery(document).ready(function() {
     window.logout = function() {
         window.localStorage.removeItem("token");

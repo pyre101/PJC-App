@@ -22,9 +22,8 @@ jQuery(document).ready(function () {
 
     function keepAlive(tempToken) {
         var keepAliveUri = 'http://'+connection+'/api/Login';
-        var token = tempToken;
         $.getJSON(keepAliveUri,
-            {token: token},
+            {token: tempToken},
             function (data) {
                 // On success, the token is valid, has not expired, and has been renewed.
                 console.log("kept alive");

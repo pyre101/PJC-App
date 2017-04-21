@@ -14,6 +14,7 @@ jQuery(document).ready(function() {
         localStorage.removeItem("sequence");
 
         // Get a list of users under the logged in job coach
+        var userList = JSON.parse(localStorage.getItem("userList"));
 
         // Loop through list of users and create an accordion menu for each user
         $.each(userList, function (key, item) {

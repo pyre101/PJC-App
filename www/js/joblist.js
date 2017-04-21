@@ -39,7 +39,7 @@ function editJob(routineKey)
     document.location.href = "editJob.html";
 }
 
-function removeLocalVariables() {
+function removeLocalVariables() {//Clear localStorage variables to keep the tasks separate
     localStorage.removeItem("currentRoutine");
     localStorage.removeItem("job");
     localStorage.removeItem("currentSequence");
@@ -47,7 +47,9 @@ function removeLocalVariables() {
     localStorage.removeItem("currentRoutine");
     localStorage.removeItem("taskNum");
     localStorage.removeItem("currentTasks");
-    localStorage.removeItem("arrayOfFeedBack");
+    localStorage.removeItem("arrOfFeedBack");
+    localStorage.removeItem("feedNum");
+    localStorage.removeItem("currentFeedback");
 }
 
 /*

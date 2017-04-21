@@ -1,1 +1,0 @@
-var connection = "pjcdbrebuild2.gear.host";

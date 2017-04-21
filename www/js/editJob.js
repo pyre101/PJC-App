@@ -5,6 +5,7 @@ jQuery(document).ready(function() {
     }, 500);
 
     loadJob();
+    localStorage.removeItem("arrOfFeedBack"); //clears working list of feedbacks when task is exited
 });
 
 

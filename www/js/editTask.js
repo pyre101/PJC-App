@@ -27,7 +27,8 @@ function fillBoxes()
         currentTask.Feedbacks = JSON.parse(localStorage.getItem("arrOfFeedBack"));
     }
     var feedList = currentTask.Feedbacks;
-    console.log(feedList);
+    localStorage.setItem("arrOfFeedBack", JSON.stringify(currentTask.Feedbacks)); //sets the arrOfFeedBack to be used by addFeedback.js
+    //console.log(feedList);
     for(var i = 0; i < feedList.length; i++){
         $(  '<div data-role="collapsible">' +
             '<h4>' + feedList[i].feedbackTitle + '</h4>' +
@@ -42,6 +43,7 @@ function fillBoxes()
 
         $(list).collapsibleset('refresh');
     }
+    localStorage.setItem("currentEditJob", JSON.stringify(currentTask));
 }
 
 function deleteTask() {

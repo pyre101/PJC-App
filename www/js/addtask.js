@@ -11,19 +11,28 @@ jQuery(document).ready(function () {
  function displayFeedback(){
 	
 	var addToDiv = document.getElementById('feedBacks');
-	var arrOfFeedBack = JSON.parse(localStorage.getItem('arrOfFeedBack')); 
-	for(var i = 0; i < arrOfFeedBack.length; i++)
-	{
-		var FeedBack = arrOfFeedBack[i];
-		
-		if(FeedBack != null)
-		{
-			//console.log(FeedBack);
-			var toAdd = document.createElement('div'); 
-		    toAdd.innerHTML = 'Feedback Name: '+ FeedBack.feedbackTitle + '</br>';
-			addToDiv.append(toAdd); 
-		}
- 	}
+	var arrOfFeedBack = JSON.parse(localStorage.getItem('arrOfFeedBack'));
+	if(arrOfFeedBack != null) {
+        for (var i = 0; i < arrOfFeedBack.length; i++) {
+            var FeedBack = arrOfFeedBack[i];
+            if (FeedBack != null) {
+                //console.log(FeedBack);
+                //var toAdd = document.createElement('div');
+                $('<div data-role="collapsible">' +
+                    '<h4>' + FeedBack.feedbackTitle + '</h4>' +
+                    '<div data-role="listview" class="ui-grid-a ui-responsive">' +
+                    '<div>Message: ' + FeedBack.feedbackMessage + '</div>' +
+                    '<div class="ui-block-solo">' +
+                    '<a onclick="editFeedback(' + i + ')" data-ajax="false" class="ui-btn ui-icon-edit ui-btn-icon-left">' +
+                    'Edit Reminder' +
+                    '</a></div>' +
+                    '</div>' +
+                    '</div>').appendTo(addToDiv);
+
+                $(addToDiv).collapsibleset('refresh');
+            }
+        }
+    }
 }
 function addFeedback(){
 	//localStorage.removeItem('arrOfFeedBack'); 
@@ -66,7 +75,7 @@ function Submit(){
             "TaskCategory": {"categoryName":document.getElementById("taskCat").value},
             "isTimed": document.getElementById("taskTimed").checked,
             "expectedDuration": jobExpected,
-			"arrOfFeedBack" : localStorage.getItem('arrOfFeedBack') 
+			"arrOfFeedBack" : JSON.parse(localStorage.getItem('arrOfFeedBack'))
         };
         sequenceNum++;
         localStorage.setItem("sequence", sequenceNum);
